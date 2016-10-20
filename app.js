@@ -9,7 +9,6 @@ const jsonParser = bodyParser.json();
 app.use(jsonParser);
 app.use(express.static('public'));
 
-
-routes(app ,jwt);
+routes(app);
 
 app.listen(4040);
