@@ -99,6 +99,9 @@ a {
     padding: 1rem;
     font-size: 1.5rem;
     color: $orange_base;
+    a {
+      color: $orange_base;
+    }
   }
 
   &__menu {

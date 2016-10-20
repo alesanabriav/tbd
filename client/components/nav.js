@@ -6,13 +6,13 @@ export default React.createClass({
     return (
       <div className="nav">
         <div className="nav__logo">
-          Taller84
+          <a href="/">Taller84</a>
         </div>
         <ul className="nav__menu">
           <li>
-          <a href="#">Empresas</a>
+          <a href="/empresas">Empresas</a>
           </li>
-          <li> <a href="#">Listas</a></li>
+          <li> <a href="/listas">Listas</a></li>
         </ul>
       </div>
     )

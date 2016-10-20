@@ -14,4 +14,8 @@ page('/empresas', () => {
   render(<App />, document.getElementById('app'));
 });
 
+page('/listas', () => {
+  render(<App />, document.getElementById('app'));
+});
+
 page();

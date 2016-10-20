@@ -72,6 +72,10 @@
 	  (0, _reactDom.render)(_react2.default.createElement(_app2.default, null), document.getElementById('app'));
 	});
 
+	(0, _page2.default)('/listas', function () {
+	  (0, _reactDom.render)(_react2.default.createElement(_app2.default, null), document.getElementById('app'));
+	});
+
 	(0, _page2.default)();
 
 /***/ },
@@ -21502,7 +21506,11 @@
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'nav__logo' },
-	        'Taller84'
+	        _react2.default.createElement(
+	          'a',
+	          { href: '/' },
+	          'Taller84'
+	        )
 	      ),
 	      _react2.default.createElement(
 	        'ul',
@@ -21512,7 +21520,7 @@
 	          null,
 	          _react2.default.createElement(
 	            'a',
-	            { href: '#' },
+	            { href: '/empresas' },
 	            'Empresas'
 	          )
 	        ),
@@ -21522,7 +21530,7 @@
 	          ' ',
 	          _react2.default.createElement(
 	            'a',
-	            { href: '#' },
+	            { href: '/listas' },
 	            'Listas'
 	          )
 	        )
@@ -21566,7 +21574,7 @@
 
 
 	// module
-	exports.push([module.id, "* {\n  box-sizing: border-box; }\n\nbody {\n  background: #f1f1f1;\n  font-family: 'Open Sans', sans-serif;\n  margin-left: 200px; }\n\n.color_base {\n  background: #F09121; }\n\n.color-medium {\n  background: #D5811D; }\n\nbutton {\n  border: none;\n  padding: .5rem 1rem;\n  text-decoration: none;\n  transition: all 300ms ease;\n  background: #fff;\n  cursor: pointer; }\n  button:hover {\n    background: #ddd; }\n\nul {\n  padding: 0; }\n\nli {\n  list-style: none; }\n\na {\n  text-decoration: none;\n  color: #313131; }\n  a:hover {\n    text-decoration: none; }\n\n.pull-left {\n  float: left; }\n\n.pull-right {\n  float: right; }\n\n.flex-right {\n  margin-left: auto; }\n\n.vertical_align, .card__header {\n  display: flex;\n  align-items: center; }\n\n.card__header {\n  background: #F09121;\n  padding: 1rem;\n  font-weight: bold;\n  color: #603A0D;\n  width: 100%; }\n\n.card__content {\n  background: #fff;\n  padding: 1rem; }\n\n.nav {\n  display: inline-block;\n  background: #313131;\n  height: 100%;\n  position: fixed;\n  left: 0;\n  top: 0;\n  width: 200px; }\n  .nav__logo {\n    display: block;\n    padding: 1rem;\n    font-size: 1.5rem;\n    color: #F09121; }\n  .nav__menu {\n    padding: 0; }\n    .nav__menu li {\n      width: 100%;\n      display: block;\n      float: left; }\n      .nav__menu li a {\n        color: #fff;\n        display: block;\n        padding: 1rem;\n        background: #2c2c2c;\n        margin-bottom: 1rem;\n        transition: all 300ms ease; }\n        .nav__menu li a:hover {\n          background: #272727; }\n\n.row::after {\n  content: \"\";\n  clear: both;\n  display: block; }\n\n[class*=\"col-\"] {\n  float: left;\n  padding: 15px; }\n\n.col-1 {\n  width: 8.33333%; }\n\n.col-2 {\n  width: 16.66667%; }\n\n.col-3 {\n  width: 25%; }\n\n.col-4 {\n  width: 33.33333%; }\n\n.col-5 {\n  width: 41.66667%; }\n\n.col-6 {\n  width: 50%; }\n\n.col-7 {\n  width: 58.33333%; }\n\n.col-8 {\n  width: 66.66667%; }\n\n.col-9 {\n  width: 75%; }\n\n.col-10 {\n  width: 83.33333%; }\n\n.col-11 {\n  width: 91.66667%; }\n\n.col-12 {\n  width: 100%; }\n\ntable {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem;\n  border-collapse: collapse; }\n  table thead th {\n    text-align: left;\n    vertical-align: bottom;\n    border-bottom: 2px solid #ddd;\n    padding: .75rem; }\n  table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #eceeef; }\n", ""]);
+	exports.push([module.id, "* {\n  box-sizing: border-box; }\n\nbody {\n  background: #f1f1f1;\n  font-family: 'Open Sans', sans-serif;\n  margin-left: 200px; }\n\n.color_base {\n  background: #F09121; }\n\n.color-medium {\n  background: #D5811D; }\n\nbutton {\n  border: none;\n  padding: .5rem 1rem;\n  text-decoration: none;\n  transition: all 300ms ease;\n  background: #fff;\n  cursor: pointer; }\n  button:hover {\n    background: #ddd; }\n\nul {\n  padding: 0; }\n\nli {\n  list-style: none; }\n\na {\n  text-decoration: none;\n  color: #313131; }\n  a:hover {\n    text-decoration: none; }\n\n.pull-left {\n  float: left; }\n\n.pull-right {\n  float: right; }\n\n.flex-right {\n  margin-left: auto; }\n\n.vertical_align, .card__header {\n  display: flex;\n  align-items: center; }\n\n.card__header {\n  background: #F09121;\n  padding: 1rem;\n  font-weight: bold;\n  color: #603A0D;\n  width: 100%; }\n\n.card__content {\n  background: #fff;\n  padding: 1rem; }\n\n.nav {\n  display: inline-block;\n  background: #313131;\n  height: 100%;\n  position: fixed;\n  left: 0;\n  top: 0;\n  width: 200px; }\n  .nav__logo {\n    display: block;\n    padding: 1rem;\n    font-size: 1.5rem;\n    color: #F09121; }\n    .nav__logo a {\n      color: #F09121; }\n  .nav__menu {\n    padding: 0; }\n    .nav__menu li {\n      width: 100%;\n      display: block;\n      float: left; }\n      .nav__menu li a {\n        color: #fff;\n        display: block;\n        padding: 1rem;\n        background: #2c2c2c;\n        margin-bottom: 1rem;\n        transition: all 300ms ease; }\n        .nav__menu li a:hover {\n          background: #272727; }\n\n.row::after {\n  content: \"\";\n  clear: both;\n  display: block; }\n\n[class*=\"col-\"] {\n  float: left;\n  padding: 15px; }\n\n.col-1 {\n  width: 8.33333%; }\n\n.col-2 {\n  width: 16.66667%; }\n\n.col-3 {\n  width: 25%; }\n\n.col-4 {\n  width: 33.33333%; }\n\n.col-5 {\n  width: 41.66667%; }\n\n.col-6 {\n  width: 50%; }\n\n.col-7 {\n  width: 58.33333%; }\n\n.col-8 {\n  width: 66.66667%; }\n\n.col-9 {\n  width: 75%; }\n\n.col-10 {\n  width: 83.33333%; }\n\n.col-11 {\n  width: 91.66667%; }\n\n.col-12 {\n  width: 100%; }\n\ntable {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem;\n  border-collapse: collapse; }\n  table thead th {\n    text-align: left;\n    vertical-align: bottom;\n    border-bottom: 2px solid #ddd;\n    padding: .75rem; }\n  table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #eceeef; }\n", ""]);
 
 	// exports
 
