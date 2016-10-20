@@ -1,0 +1,20 @@
+table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+  border-collapse: collapse;
+  thead {
+    th {
+      text-align: left;
+      vertical-align: bottom;
+      border-bottom: 2px solid #ddd;
+      padding: .75rem;
+    }
+  }
+
+  td {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #eceeef;
+  }
+}
