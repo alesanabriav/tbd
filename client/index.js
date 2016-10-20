@@ -2,6 +2,16 @@
 import React from 'react';
 import {render} from 'react-dom';
 import App from './components/app';
+import page from 'page.js';
  require("../sass/main.scss");
 
-render(<App />, document.getElementById('app'));
+
+page('/', () => {
+  render(<App />, document.getElementById('app'));
+});
+
+page('/empresas', () => {
+  render(<App />, document.getElementById('app'));
+});
+
+page();
