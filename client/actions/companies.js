@@ -1,10 +1,14 @@
 'use strict';
+import request from 'axios';
 const TYPE = "COMPANIES";
 
-export function fetchCompanies() {
-  return {
-    type: `${TYPE}_FULFILLED`,
-    payload: [{name: 'brandspa', phone: '122434'}, {name: 'taller84', phone: '122434'}]
+export function fetchCompanies(params = {}) {
+  return function(dispatch) {
+    request
+    .get('/api/v1/companies', {params: params})
+    .then(res => {
+      dispatch({ type: `${TYPE}_FULFILLED`, payload: res.data });
+    })
   }
 }
 

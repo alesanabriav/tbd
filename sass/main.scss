@@ -12,6 +12,7 @@ body {
   background: #f1f1f1;
   font-family: 'Open Sans', sans-serif;
   margin-left: 200px;
+  color: $grey;
 }
 
 .color_base {
@@ -29,6 +30,10 @@ button {
   transition: $transition;
   background: #fff;
   cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
 
   &:hover {
      background: #ddd;
@@ -126,5 +131,24 @@ a {
   }
 }
 
+.companies {
+  .btn-group {
+    padding-left: 1rem;
+  }
+}
+
+input {
+  padding: .5rem;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 1rem;
+  transition: $transition;
+
+  &:focus {
+    outline: none;
+    border-color: $orange_base;
+  }
+}
 @import 'grid';
 @import 'table';

@@ -18,8 +18,8 @@ export default React.createClass({
         <td>{email}</td>
         <td>{phone}</td>
         <td>
-          <button onClick="editCompany">Editar</button>
-          <button onClick="addCompanyToList">Agregar</button>
+          <button onClick={this.editCompany}>Editar</button>
+          <button onClick={this.addCompanyToList}>Agregar</button>
           </td>
       </tr>
     )

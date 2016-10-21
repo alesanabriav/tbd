@@ -23841,7 +23841,7 @@
 
 
 	// module
-	exports.push([module.id, "* {\n  box-sizing: border-box; }\n\nbody {\n  background: #f1f1f1;\n  font-family: 'Open Sans', sans-serif;\n  margin-left: 200px; }\n\n.color_base {\n  background: #F09121; }\n\n.color-medium {\n  background: #D5811D; }\n\nbutton {\n  border: none;\n  padding: .5rem 1rem;\n  text-decoration: none;\n  transition: all 300ms ease;\n  background: #fff;\n  cursor: pointer; }\n  button:hover {\n    background: #ddd; }\n\nul {\n  padding: 0; }\n\nli {\n  list-style: none; }\n\na {\n  text-decoration: none;\n  color: #313131; }\n  a:hover {\n    text-decoration: none; }\n\n.pull-left {\n  float: left; }\n\n.pull-right {\n  float: right; }\n\n.flex-right {\n  margin-left: auto; }\n\n.vertical_align, .card__header {\n  display: flex;\n  align-items: center; }\n\n.card__header {\n  background: #F09121;\n  padding: 1rem;\n  font-weight: bold;\n  color: #603A0D;\n  width: 100%; }\n\n.card__content {\n  background: #fff;\n  padding: 1rem; }\n\n.nav {\n  display: inline-block;\n  background: #313131;\n  height: 100%;\n  position: fixed;\n  left: 0;\n  top: 0;\n  width: 200px; }\n  .nav__logo {\n    display: block;\n    padding: 1rem;\n    font-size: 1.5rem;\n    color: #F09121; }\n    .nav__logo a {\n      color: #F09121; }\n  .nav__menu {\n    padding: 0; }\n    .nav__menu li {\n      width: 100%;\n      display: block;\n      float: left; }\n      .nav__menu li a {\n        color: #fff;\n        display: block;\n        padding: 1rem;\n        background: #2c2c2c;\n        margin-bottom: 1rem;\n        transition: all 300ms ease; }\n        .nav__menu li a:hover {\n          background: #272727; }\n\n.row::after {\n  content: \"\";\n  clear: both;\n  display: block; }\n\n[class*=\"col-\"] {\n  float: left;\n  padding: 15px; }\n\n.col-1 {\n  width: 8.33333%; }\n\n.col-2 {\n  width: 16.66667%; }\n\n.col-3 {\n  width: 25%; }\n\n.col-4 {\n  width: 33.33333%; }\n\n.col-5 {\n  width: 41.66667%; }\n\n.col-6 {\n  width: 50%; }\n\n.col-7 {\n  width: 58.33333%; }\n\n.col-8 {\n  width: 66.66667%; }\n\n.col-9 {\n  width: 75%; }\n\n.col-10 {\n  width: 83.33333%; }\n\n.col-11 {\n  width: 91.66667%; }\n\n.col-12 {\n  width: 100%; }\n\ntable {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem;\n  border-collapse: collapse; }\n  table thead th {\n    text-align: left;\n    vertical-align: bottom;\n    border-bottom: 2px solid #ddd;\n    padding: .75rem; }\n  table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #eceeef; }\n", ""]);
+	exports.push([module.id, "* {\n  box-sizing: border-box; }\n\nbody {\n  background: #f1f1f1;\n  font-family: 'Open Sans', sans-serif;\n  margin-left: 200px;\n  color: #313131; }\n\n.color_base {\n  background: #F09121; }\n\n.color-medium {\n  background: #D5811D; }\n\nbutton {\n  border: none;\n  padding: .5rem 1rem;\n  text-decoration: none;\n  transition: all 300ms ease;\n  background: #fff;\n  cursor: pointer; }\n  button:focus {\n    outline: none; }\n  button:hover {\n    background: #ddd; }\n\nul {\n  padding: 0; }\n\nli {\n  list-style: none; }\n\na {\n  text-decoration: none;\n  color: #313131; }\n  a:hover {\n    text-decoration: none; }\n\n.pull-left {\n  float: left; }\n\n.pull-right {\n  float: right; }\n\n.flex-right {\n  margin-left: auto; }\n\n.vertical_align, .card__header {\n  display: flex;\n  align-items: center; }\n\n.card__header {\n  background: #F09121;\n  padding: 1rem;\n  font-weight: bold;\n  color: #603A0D;\n  width: 100%; }\n\n.card__content {\n  background: #fff;\n  padding: 1rem; }\n\n.nav {\n  display: inline-block;\n  background: #313131;\n  height: 100%;\n  position: fixed;\n  left: 0;\n  top: 0;\n  width: 200px; }\n  .nav__logo {\n    display: block;\n    padding: 1rem;\n    font-size: 1.5rem;\n    color: #F09121; }\n    .nav__logo a {\n      color: #F09121; }\n  .nav__menu {\n    padding: 0; }\n    .nav__menu li {\n      width: 100%;\n      display: block;\n      float: left; }\n      .nav__menu li a {\n        color: #fff;\n        display: block;\n        padding: 1rem;\n        background: #2c2c2c;\n        margin-bottom: 1rem;\n        transition: all 300ms ease; }\n        .nav__menu li a:hover {\n          background: #272727; }\n\n.companies .btn-group {\n  padding-left: 1rem; }\n\ninput {\n  padding: .5rem;\n  width: 100%;\n  border: none;\n  border-bottom: 2px solid #ddd;\n  margin-bottom: 1rem;\n  transition: all 300ms ease; }\n  input:focus {\n    outline: none;\n    border-color: #F09121; }\n\n.row::after {\n  content: \"\";\n  clear: both;\n  display: block; }\n\n[class*=\"col-\"] {\n  float: left;\n  padding: 15px; }\n\n.col-1 {\n  width: 8.33333%; }\n\n.col-2 {\n  width: 16.66667%; }\n\n.col-3 {\n  width: 25%; }\n\n.col-4 {\n  width: 33.33333%; }\n\n.col-5 {\n  width: 41.66667%; }\n\n.col-6 {\n  width: 50%; }\n\n.col-7 {\n  width: 58.33333%; }\n\n.col-8 {\n  width: 66.66667%; }\n\n.col-9 {\n  width: 75%; }\n\n.col-10 {\n  width: 83.33333%; }\n\n.col-11 {\n  width: 91.66667%; }\n\n.col-12 {\n  width: 100%; }\n\ntable {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem;\n  border-collapse: collapse; }\n  table thead th {\n    text-align: left;\n    vertical-align: bottom;\n    border-bottom: 2px solid #ddd;\n    padding: .75rem; }\n  table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #eceeef; }\n", ""]);
 
 	// exports
 
@@ -25768,13 +25768,17 @@
 
 	var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
 
+	var _reduxThunk = __webpack_require__(243);
+
+	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+
 	var _reducers = __webpack_require__(237);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var middleware = (0, _redux.applyMiddleware)((0, _reduxLogger2.default)());
+	var middleware = (0, _redux.applyMiddleware)(_reduxThunk2.default, (0, _reduxLogger2.default)());
 	exports.default = (0, _redux.createStore)(_reducers2.default, middleware);
 
 /***/ },
@@ -26720,6 +26724,13 @@
 	  componentWillMount: function componentWillMount() {
 	    this.props.dispatch((0, _companies.fetchCompanies)());
 	  },
+	  paginate: function paginate(type, evt) {
+	    var offset = 0;
+	    if (type == 'more') offset = 25;
+	    if (type == 'less') offset = 0;
+
+	    this.props.dispatch((0, _companies.fetchCompanies)({ offset: offset }));
+	  },
 	  render: function render() {
 	    var companiesNodes = this.props.companies.items.map(function (company, ind) {
 	      return _react2.default.createElement(_item2.default, { key: ind, company: company });
@@ -26730,7 +26741,7 @@
 	      { className: 'col-12' },
 	      _react2.default.createElement(
 	        'div',
-	        { className: 'card' },
+	        { className: 'card companies' },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'card__header' },
@@ -26738,6 +26749,24 @@
 	            'h3',
 	            { className: 'pull-left' },
 	            'Empresas'
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'btn-group' },
+	            _react2.default.createElement(
+	              'button',
+	              { className: 'btn-group__btn', onClick: this.paginate.bind(this, 'less') },
+	              ' ',
+	              _react2.default.createElement('i', { className: 'ion-chevron-left' }),
+	              ' '
+	            ),
+	            _react2.default.createElement(
+	              'button',
+	              { className: 'btn-group__btn', onClick: this.paginate.bind(this, 'more') },
+	              ' ',
+	              _react2.default.createElement('i', { className: 'ion-chevron-right' }),
+	              ' '
+	            )
 	          ),
 	          _react2.default.createElement(
 	            'button',
@@ -26748,6 +26777,7 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'card__content' },
+	          _react2.default.createElement('input', { type: 'text', placeholder: 'Buscar por nombre' }),
 	          _react2.default.createElement(
 	            'table',
 	            null,
@@ -26797,7 +26827,7 @@
 
 /***/ },
 /* 241 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
@@ -26807,12 +26837,22 @@
 	exports.fetchCompanies = fetchCompanies;
 	exports.addCompanyToList = addCompanyToList;
 	exports.setCompany = setCompany;
+
+	var _axios = __webpack_require__(175);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	var TYPE = "COMPANIES";
 
 	function fetchCompanies() {
-	  return {
-	    type: TYPE + '_FULFILLED',
-	    payload: [{ name: 'brandspa', phone: '122434' }, { name: 'taller84', phone: '122434' }]
+	  var params = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+	  return function (dispatch) {
+	    _axios2.default.get('/api/v1/companies', { params: params }).then(function (res) {
+	      dispatch({ type: TYPE + '_FULFILLED', payload: res.data });
+	    });
 	  };
 	}
 
@@ -26873,18 +26913,46 @@
 	        null,
 	        _react2.default.createElement(
 	          'button',
-	          { onClick: 'editCompany' },
+	          { onClick: this.editCompany },
 	          'Editar'
 	        ),
 	        _react2.default.createElement(
 	          'button',
-	          { onClick: 'addCompanyToList' },
+	          { onClick: this.addCompanyToList },
 	          'Agregar'
 	        )
 	      )
 	    );
 	  }
 	});
+
+/***/ },
+/* 243 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.__esModule = true;
+	function createThunkMiddleware(extraArgument) {
+	  return function (_ref) {
+	    var dispatch = _ref.dispatch;
+	    var getState = _ref.getState;
+	    return function (next) {
+	      return function (action) {
+	        if (typeof action === 'function') {
+	          return action(dispatch, getState, extraArgument);
+	        }
+
+	        return next(action);
+	      };
+	    };
+	  };
+	}
+
+	var thunk = createThunkMiddleware();
+	thunk.withExtraArgument = createThunkMiddleware;
+
+	exports['default'] = thunk;
 
 /***/ }
 /******/ ]);
