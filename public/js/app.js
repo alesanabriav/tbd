@@ -26670,8 +26670,10 @@
 	var TYPE = 'COMPANIES';
 	var initiState = {
 	  items: [],
-	  offset: 0,
-	  nameLike: '',
+	  query: {
+	    offset: 0,
+	    nameLike: null
+	  },
 	  fetching: false,
 	  fetched: false
 	};
@@ -26692,12 +26694,12 @@
 	      break;
 	    case TYPE + '_PAGINATE':
 	      return _extends({}, state, {
-	        offset: action.payload
+	        query: action.payload
 	      });
 	      break;
 	    case TYPE + '_SEARCH':
 	      return _extends({}, state, {
-	        nameLike: action.payload
+	        query: action.payload
 	      });
 	      break;
 	    default:
@@ -26732,6 +26734,10 @@
 
 	var _item2 = _interopRequireDefault(_item);
 
+	var _form = __webpack_require__(244);
+
+	var _form2 = _interopRequireDefault(_form);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var companies = _react2.default.createClass({
@@ -26740,24 +26746,42 @@
 	    this.props.dispatch((0, _companies.fetchCompanies)());
 	  },
 	  paginate: function paginate(type, evt) {
-	    var offset = this.props.companies.offset;
-	    if (type == 'more') offset += 25;
-	    if (type == 'less' && offset > 0) offset -= 25;
-	    this.props.dispatch((0, _companies.paginateCompanies)(offset));
+	    if (evt) evt.preventDefault();
+	    var query = this.props.companies.query;
+
+	    this.props.dispatch((0, _companies.paginateCompanies)(query, type));
 	  },
-	  search: function search(e) {},
+	  search: function search(evt) {
+	    var query = this.props.companies.query;
+
+	    this.props.dispatch((0, _companies.searchCompanies)(query, evt.target.value));
+	  },
+	  edit: function edit(e) {
+	    console.log('edit', e);
+	  },
 	  render: function render() {
+	    var _this = this;
+
 	    var _props$companies = this.props.companies;
 	    var nameLink = _props$companies.nameLink;
 	    var items = _props$companies.items;
 
 	    var companiesNodes = items.map(function (company, ind) {
-	      return _react2.default.createElement(_item2.default, { key: ind, company: company });
+	      return _react2.default.createElement(_item2.default, { key: ind, company: company, editCompany: _this.edit });
 	    });
 
 	    return _react2.default.createElement(
 	      'div',
 	      { className: 'col-12' },
+	      _react2.default.createElement(
+	        'div',
+	        { className: 'card companies' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'card__content' },
+	          _react2.default.createElement(_form2.default, null)
+	        )
+	      ),
 	      _react2.default.createElement(
 	        'div',
 	        { className: 'card companies' },
@@ -26814,6 +26838,11 @@
 	                _react2.default.createElement(
 	                  'th',
 	                  null,
+	                  '#'
+	                ),
+	                _react2.default.createElement(
+	                  'th',
+	                  null,
 	                  'Raz\xF3n Social'
 	                ),
 	                _react2.default.createElement(
@@ -26858,6 +26887,9 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	exports.fetchCompanies = fetchCompanies;
 	exports.paginateCompanies = paginateCompanies;
 	exports.searchCompanies = searchCompanies;
@@ -26882,21 +26914,27 @@
 	  };
 	}
 
-	function paginateCompanies(offset) {
-	  var params = { offset: offset };
+	function paginateCompanies(query, type) {
+	  var _query = query;
+	  var offset = _query.offset;
+
+	  if (type == 'more') offset += 25;
+	  if (type == 'less' && offset > 0) offset -= 25;
+	  query = _extends({}, query, { offset: offset });
 
 	  return function (dispatch) {
-	    dispatch({ type: TYPE + '_PAGINATE', payload: offset });
-	    dispatch(fetchCompanies(params));
+	    dispatch({ type: TYPE + '_PAGINATE', payload: query });
+	    dispatch(fetchCompanies(query));
 	  };
 	}
 
-	function searchCompanies(query) {
-	  var params = { nameLike: query };
+	function searchCompanies(query, name) {
+	  if (name.length <= 0) name = null;
+	  query = _extends({}, query, { nameLike: name });
 
 	  return function (dispatch) {
-	    dispatch({ type: TYPE + '_SEARCH', payload: queryLike });
-	    dispatch(fetchCompanies(params));
+	    dispatch({ type: TYPE + '_SEARCH', payload: query });
+	    dispatch(fetchCompanies(query));
 	  };
 	}
 
@@ -26925,11 +26963,13 @@
 	  addCompanyToList: function addCompanyToList() {
 	    this.props.addToList(this.props.company);
 	  },
-	  editCompany: function editCompany() {
+	  editCompany: function editCompany(e) {
+	    if (e) e.preventDefault();
 	    this.props.editCompany(this.props.company);
 	  },
 	  render: function render() {
 	    var _props$company = this.props.company;
+	    var id = _props$company.id;
 	    var name = _props$company.name;
 	    var email = _props$company.email;
 	    var phone = _props$company.phone;
@@ -26937,6 +26977,11 @@
 	    return _react2.default.createElement(
 	      'tr',
 	      null,
+	      _react2.default.createElement(
+	        'td',
+	        null,
+	        id
+	      ),
 	      _react2.default.createElement(
 	        'td',
 	        null,
@@ -26997,6 +27042,108 @@
 	thunk.withExtraArgument = createThunkMiddleware;
 
 	exports['default'] = thunk;
+
+/***/ },
+/* 244 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _react2.default.createClass({
+	    displayName: 'form',
+	    handleInputChange: function handleInputChange(field, evt) {
+	        console.log(field, evt.target.value);
+	    },
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'form',
+	            { className: 'row' },
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'input-container col-6' },
+	                _react2.default.createElement('input', {
+	                    type: 'text',
+	                    onChange: this.handleInputChange.bind(this, 'name'),
+	                    placeholder: 'Raz\xF3n social' })
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'input-container col-6' },
+	                _react2.default.createElement('input', {
+	                    type: 'text',
+	                    onChange: this.handleInputChange.bind(this, 'commercial_name'),
+	                    placeholder: 'Nombre comercial' })
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'input-container col-6' },
+	                _react2.default.createElement('input', {
+	                    type: 'text',
+	                    onChange: this.handleInputChange.bind(this, 'nit'),
+	                    placeholder: 'NIT' })
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'input-container col-6' },
+	                _react2.default.createElement('input', {
+	                    type: 'text',
+	                    onChange: this.handleInputChange.bind(this, 'email'),
+	                    placeholder: 'Email' })
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'input-container col-6' },
+	                _react2.default.createElement('input', {
+	                    type: 'text',
+	                    onChange: this.handleInputChange.bind(this, 'city'),
+	                    placeholder: 'Ciudad' })
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'input-container col-6' },
+	                _react2.default.createElement('input', {
+	                    type: 'text',
+	                    onChange: this.handleInputChange.bind(this, 'address'),
+	                    placeholder: 'Direcci\xF3n' })
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'input-container col-6' },
+	                _react2.default.createElement('input', {
+	                    type: 'text',
+	                    onChange: this.handleInputChange.bind(this, 'phone'),
+	                    placeholder: 'Tel\xE9fono' })
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'input-container col-6' },
+	                _react2.default.createElement('input', {
+	                    type: 'text',
+	                    onChange: this.handleInputChange.bind(this, 'contact_name'),
+	                    placeholder: 'Contacto' })
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'col-12' },
+	                _react2.default.createElement(
+	                    'button',
+	                    { className: 'pull-right' },
+	                    'Guardar'
+	                )
+	            )
+	        );
+	    }
+	});
 
 /***/ }
 /******/ ]);

@@ -2,8 +2,10 @@
 const TYPE = 'COMPANIES';
 const initiState = {
   items: [],
-  offset: 0,
-  nameLike: '',
+  query: {
+    offset: 0,
+    nameLike: null
+  },
   fetching: false,
   fetched: false
 };
@@ -23,13 +25,13 @@ export default function reducer(state = initiState, action) {
     case `${TYPE}_PAGINATE`:
       return {
         ...state,
-        offset: action.payload
+        query: action.payload
       };
     break;
     case `${TYPE}_SEARCH`:
       return {
         ...state,
-        nameLike: action.payload
+        query: action.payload
       };
     break;
     default:

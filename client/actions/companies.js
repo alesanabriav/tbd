@@ -12,21 +12,25 @@ export function fetchCompanies(params = {}) {
   }
 }
 
-export function paginateCompanies(offset) {
-  let params = {offset};
-  
+export function paginateCompanies(query, type) {
+  let {offset} = query;
+  if(type == 'more') offset += 25;
+  if(type == 'less' && offset > 0) offset -= 25;
+  query = {...query, offset};
+
   return function(dispatch) { 
-    dispatch({type: `${TYPE}_PAGINATE`, payload: offset});
-    dispatch(fetchCompanies(params));
+    dispatch({type: `${TYPE}_PAGINATE`, payload: query});
+    dispatch(fetchCompanies(query));
   }
 }
 
-export function searchCompanies(query) {
-  let params = {nameLike: query};
+export function searchCompanies(query, name) {
+  if(name.length <= 0) name = null;
+  query = {...query, nameLike: name};
   
   return function(dispatch) { 
-    dispatch({type: `${TYPE}_SEARCH`, payload: queryLike});
-    dispatch(fetchCompanies(params));
+    dispatch({type: `${TYPE}_SEARCH`, payload: query});
+    dispatch(fetchCompanies(query));
   }
 }
 

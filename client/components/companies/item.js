@@ -6,14 +6,16 @@ export default React.createClass({
     this.props.addToList(this.props.company);
   },
 
-  editCompany() {
+  editCompany(e) {
+    if(e) e.preventDefault();
     this.props.editCompany(this.props.company);
   },
 
   render() {
-    const {name, email, phone} = this.props.company;
+    const {id, name, email, phone} = this.props.company;
     return (
       <tr>
+        <td>{id}</td>
         <td>{name}</td>
         <td>{email}</td>
         <td>{phone}</td>

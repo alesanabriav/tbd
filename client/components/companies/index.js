@@ -2,8 +2,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import request from 'axios';
-import  {fetchCompanies, paginateCompanies} from '../../actions/companies';
+import  {fetchCompanies, paginateCompanies, searchCompanies} from '../../actions/companies';
 import Item from './item';
+import Form from './form';
 
 const companies =  React.createClass({
   componentWillMount() {
@@ -11,24 +12,33 @@ const companies =  React.createClass({
   },
 
   paginate(type, evt) {
-    let offset = this.props.companies.offset;
-    if(type == 'more') offset += 25;
-    if(type == 'less' && offset > 0) offset -= 25;
-    this.props.dispatch(paginateCompanies(offset));
+    if(evt) evt.preventDefault();
+    let {query} = this.props.companies;
+    this.props.dispatch(paginateCompanies(query, type));
   },
 
-  search(e) {
-    
+  search(evt) {
+    let {query} = this.props.companies;
+    this.props.dispatch(searchCompanies(query, evt.target.value));
+  },
+
+  edit(e) {
+    console.log('edit', e);
   },
 
   render() {
     const {nameLink, items} = this.props.companies;
     const companiesNodes = items.map((company, ind) => {
-      return <Item key={ind} company={company} />
+      return <Item key={ind} company={company} editCompany={this.edit} />
     });
 
     return (
        <div className="col-12">
+        <div className="card companies">
+          <div className="card__content">
+             <Form />
+          </div>
+       </div>
         <div className="card companies">
           <div className="card__header">
             <h3 className="pull-left">Empresas</h3>
@@ -59,6 +69,7 @@ const companies =  React.createClass({
               <table>
                 <thead>
                   <tr>
+                    <th>#</th>
                     <th>Razón Social</th>
                     <th>Email</th>
                     <th>Teléfono</th>
