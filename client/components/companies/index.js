@@ -1,16 +1,20 @@
 'use strict';
 import React from 'react';
+import {connect} from 'react-redux';
 import request from 'axios';
-export default React.createClass({
-  componentDidMount() {
-    request
-    .get('/api/v1/companies')
-    .then(res => res.data)
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
+import  {fetchCompanies} from '../../actions/companies';
+import Item from './item';
+
+const companies =  React.createClass({
+  componentWillMount() {
+    this.props.dispatch(fetchCompanies());
   },
 
   render() {
+    const companiesNodes = this.props.companies.items.map((company, ind) => {
+      return <Item key={ind} company={company} />
+    });
+
     return (
        <div className="col-12">
         <div className="card">
@@ -24,13 +28,12 @@ export default React.createClass({
                   <tr>
                     <th>Razón Social</th>
                     <th>Email</th>
+                    <th>Teléfono</th>
+                    <th>Opciones</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Brand spa</td>
-                    <td>ale@brandspa.com</td>
-                  </tr>
+                  {companiesNodes}
                 </tbody>
               </table>
           </div>
@@ -39,3 +42,7 @@ export default React.createClass({
     )
   } 
 });
+
+export default connect((store) => {
+  return store;
+})(companies);

@@ -1,21 +1,39 @@
 'use strict';
 import React from 'react';
 import {render} from 'react-dom';
-import App from './components/app';
+import {Provider} from 'react-redux';
 import page from 'page.js';
- require("../sass/main.scss");
+import store from './store';
+import App from './components/app';
+import Companies from './components/companies';
+
+//import sass
+require("../sass/main.scss");
+
+const appContainer =  document.getElementById('app');
+
+function root(child) {
+  return (
+    <App>
+      <Provider store={store}>
+        {child}
+      </Provider>
+    </App>);
+};
 
 
 page('/', () => {
-  render(<App />, document.getElementById('app'));
+  render(
+    root(<Companies />)
+    , appContainer);
 });
 
 page('/empresas', () => {
-  render(<App />, document.getElementById('app'));
+  render(<App />, appContainer);
 });
 
 page('/listas', () => {
-  render(<App />, document.getElementById('app'));
+  render(<App />, appContainer);
 });
 
 page();
