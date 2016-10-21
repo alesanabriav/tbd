@@ -26670,6 +26670,8 @@
 	var TYPE = 'COMPANIES';
 	var initiState = {
 	  items: [],
+	  offset: 0,
+	  nameLike: '',
 	  fetching: false,
 	  fetched: false
 	};
@@ -26683,7 +26685,20 @@
 	      return _extends({}, state, { fetching: true });
 	      break;
 	    case TYPE + '_FULFILLED':
-	      return _extends({}, state, { fetching: false, items: action.payload });
+	      return _extends({}, state, {
+	        fetching: false,
+	        items: action.payload
+	      });
+	      break;
+	    case TYPE + '_PAGINATE':
+	      return _extends({}, state, {
+	        offset: action.payload
+	      });
+	      break;
+	    case TYPE + '_SEARCH':
+	      return _extends({}, state, {
+	        nameLike: action.payload
+	      });
 	      break;
 	    default:
 	      return state;
@@ -26725,14 +26740,18 @@
 	    this.props.dispatch((0, _companies.fetchCompanies)());
 	  },
 	  paginate: function paginate(type, evt) {
-	    var offset = 0;
-	    if (type == 'more') offset = 25;
-	    if (type == 'less') offset = 0;
-
-	    this.props.dispatch((0, _companies.fetchCompanies)({ offset: offset }));
+	    var offset = this.props.companies.offset;
+	    if (type == 'more') offset += 25;
+	    if (type == 'less' && offset > 0) offset -= 25;
+	    this.props.dispatch((0, _companies.paginateCompanies)(offset));
 	  },
+	  search: function search(e) {},
 	  render: function render() {
-	    var companiesNodes = this.props.companies.items.map(function (company, ind) {
+	    var _props$companies = this.props.companies;
+	    var nameLink = _props$companies.nameLink;
+	    var items = _props$companies.items;
+
+	    var companiesNodes = items.map(function (company, ind) {
 	      return _react2.default.createElement(_item2.default, { key: ind, company: company });
 	    });
 
@@ -26755,17 +26774,17 @@
 	            { className: 'btn-group' },
 	            _react2.default.createElement(
 	              'button',
-	              { className: 'btn-group__btn', onClick: this.paginate.bind(this, 'less') },
-	              ' ',
-	              _react2.default.createElement('i', { className: 'ion-chevron-left' }),
-	              ' '
+	              {
+	                className: 'btn-group__btn',
+	                onClick: this.paginate.bind(this, 'less') },
+	              _react2.default.createElement('i', { className: 'ion-chevron-left' })
 	            ),
 	            _react2.default.createElement(
 	              'button',
-	              { className: 'btn-group__btn', onClick: this.paginate.bind(this, 'more') },
-	              ' ',
-	              _react2.default.createElement('i', { className: 'ion-chevron-right' }),
-	              ' '
+	              {
+	                className: 'btn-group__btn',
+	                onClick: this.paginate.bind(this, 'more') },
+	              _react2.default.createElement('i', { className: 'ion-chevron-right' })
 	            )
 	          ),
 	          _react2.default.createElement(
@@ -26777,7 +26796,12 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'card__content' },
-	          _react2.default.createElement('input', { type: 'text', placeholder: 'Buscar por nombre' }),
+	          _react2.default.createElement('input', {
+	            type: 'text',
+	            placeholder: 'Buscar por nombre',
+	            onChange: this.search,
+	            value: nameLink
+	          }),
 	          _react2.default.createElement(
 	            'table',
 	            null,
@@ -26835,6 +26859,8 @@
 	  value: true
 	});
 	exports.fetchCompanies = fetchCompanies;
+	exports.paginateCompanies = paginateCompanies;
+	exports.searchCompanies = searchCompanies;
 	exports.addCompanyToList = addCompanyToList;
 	exports.setCompany = setCompany;
 
@@ -26853,6 +26879,24 @@
 	    _axios2.default.get('/api/v1/companies', { params: params }).then(function (res) {
 	      dispatch({ type: TYPE + '_FULFILLED', payload: res.data });
 	    });
+	  };
+	}
+
+	function paginateCompanies(offset) {
+	  var params = { offset: offset };
+
+	  return function (dispatch) {
+	    dispatch({ type: TYPE + '_PAGINATE', payload: offset });
+	    dispatch(fetchCompanies(params));
+	  };
+	}
+
+	function searchCompanies(query) {
+	  var params = { nameLike: query };
+
+	  return function (dispatch) {
+	    dispatch({ type: TYPE + '_SEARCH', payload: queryLike });
+	    dispatch(fetchCompanies(params));
 	  };
 	}
 

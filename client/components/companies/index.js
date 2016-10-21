@@ -2,7 +2,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import request from 'axios';
-import  {fetchCompanies} from '../../actions/companies';
+import  {fetchCompanies, paginateCompanies} from '../../actions/companies';
 import Item from './item';
 
 const companies =  React.createClass({
@@ -11,15 +11,19 @@ const companies =  React.createClass({
   },
 
   paginate(type, evt) {
-    let offset = 0;
-    if(type == 'more') offset = 25;
-    if(type == 'less') offset = 0;
+    let offset = this.props.companies.offset;
+    if(type == 'more') offset += 25;
+    if(type == 'less' && offset > 0) offset -= 25;
+    this.props.dispatch(paginateCompanies(offset));
+  },
 
-    this.props.dispatch(fetchCompanies({offset}));
+  search(e) {
+    
   },
 
   render() {
-    const companiesNodes = this.props.companies.items.map((company, ind) => {
+    const {nameLink, items} = this.props.companies;
+    const companiesNodes = items.map((company, ind) => {
       return <Item key={ind} company={company} />
     });
 
@@ -29,13 +33,29 @@ const companies =  React.createClass({
           <div className="card__header">
             <h3 className="pull-left">Empresas</h3>
             <div className="btn-group">
-              <button className="btn-group__btn" onClick={this.paginate.bind(this, 'less')}> <i className="ion-chevron-left"></i> </button>
-              <button className="btn-group__btn" onClick={this.paginate.bind(this, 'more')}> <i className="ion-chevron-right"></i> </button>
+              <button 
+                className="btn-group__btn" 
+                onClick={this.paginate.bind(this, 'less')}> 
+                <i className="ion-chevron-left"></i> 
+              </button>
+
+              <button 
+                className="btn-group__btn" 
+                onClick={this.paginate.bind(this, 'more')}> 
+                <i className="ion-chevron-right"></i> 
+              </button>
             </div>
             <button className="flex-right">Agregar empresa</button>
           </div>
           <div className="card__content">
-            <input type="text" placeholder="Buscar por nombre" />
+
+            <input 
+              type="text" 
+              placeholder="Buscar por nombre" 
+              onChange={this.search} 
+              value={nameLink} 
+            />
+
               <table>
                 <thead>
                   <tr>

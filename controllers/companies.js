@@ -6,8 +6,10 @@ export default function(sequelize) {
 
   return {
     get(req, res) {
-      let order = req.query.order ? {order: req.query.order} : {};
-      let offset = req.query.offset ? {offset: parseInt(req.query.offset)} : {};
+      let q = req.query;
+      let order = q.order ? {order: q.order} : {};
+      let offset = q.offset ? {offset: parseInt(q.offset)} : {};
+      let nameLike = q.nameLike ? {name: {$like: `%${q.nameLike}`}} : {};
       let initialQuery = {limit: 25, order: 'id DESC', offset: 0};
 
       let query = {
