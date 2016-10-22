@@ -1,0 +1,18 @@
+version: '2'
+services:
+  node:
+    build: .
+    ports: 
+      - "4040:4040"
+    volumes:
+      - ".:/var/wwww/app"
+  
+  mysql:
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=tdb
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
+    ports:
+      - "3307:3306"
+    volumes:
+      - ~/apps/tdb_mysql:/var/lib/mysql

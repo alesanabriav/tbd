@@ -5,7 +5,7 @@ import Sequelize from 'sequelize';
 import routes from './routes.js';
 const app = express();
 const jsonParser = bodyParser.json();
-const sequelize = new Sequelize('tdb', 'root', null, {});
+const sequelize = new Sequelize('tdb', 'root', 'my-secret-pw', {});
 
 //middlewares
 app.use(jsonParser);

@@ -54,6 +54,7 @@ const companies =  React.createClass({
                 onClick={this.paginate.bind(this, 'more')}> 
                 <i className="ion-chevron-right"></i> 
               </button>
+              
             </div>
             <button className="flex-right">Agregar empresa</button>
           </div>
