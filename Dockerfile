@@ -10,6 +10,8 @@ RUN mkdir -p /var/www/app
 
 WORKDIR /var/www/app
 
+VOLUME /var/www/app
+
 ADD . /var/www/app
 
 RUN yarn
