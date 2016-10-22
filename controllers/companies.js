@@ -24,6 +24,15 @@ export default function(sequelize) {
       Model.findAll(query)
       .then(companies => res.json(companies));
 
+    },
+    store(req, res) {
+      let company = req.body;
+
+      Model
+      .create(company)
+      .then(res => {
+        console.log(res);
+      })
     }
   }
 }
