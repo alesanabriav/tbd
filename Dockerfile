@@ -6,11 +6,11 @@ RUN apt-get update && apt-get install yarn
 #install pm2
 RUN npm install pm2 -g
 
-RUN mkdir -p /var/wwww/app
+RUN mkdir -p /var/www/app
 
-WORKDIR /var/wwww/app
+WORKDIR /var/www/app
 
-ADD . /var/wwww/app
+ADD . /var/www/app
 
 RUN yarn
 
