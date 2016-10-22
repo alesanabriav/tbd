@@ -5,7 +5,7 @@ services:
     ports: 
       - "4040:4040"
     volumes:
-      - ".:/var/wwww/app"
+      - ".:/var/www/app"
   
   mysql:
     image: mysql:latest

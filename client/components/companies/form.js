@@ -2,14 +2,26 @@
 import React from 'react';
 
 export default React.createClass({
+  getInitialState() {
+    return {
+
+    }
+  },
 
   handleInputChange(field, evt) {
-    console.log(field, evt.target.value);
+    let newState = {};
+    newState[field] = evt.target.value;
+    this.setState({...this.state, ...newState});
+  },
+  
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log(this.state);
   },
 
   render() {
     return (
-      <form className="row">
+      <form className="row" onSubmit={this.handleSubmit}>
         <div className="input-container col-6">
             <input 
                 type="text" 

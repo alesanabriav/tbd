@@ -27053,6 +27053,8 @@
 	    value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -27061,13 +27063,22 @@
 
 	exports.default = _react2.default.createClass({
 	    displayName: 'form',
+	    getInitialState: function getInitialState() {
+	        return {};
+	    },
 	    handleInputChange: function handleInputChange(field, evt) {
-	        console.log(field, evt.target.value);
+	        var newState = {};
+	        newState[field] = evt.target.value;
+	        this.setState(_extends({}, this.state, newState));
+	    },
+	    handleSubmit: function handleSubmit(e) {
+	        e.preventDefault();
+	        console.log(this.state);
 	    },
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'form',
-	            { className: 'row' },
+	            { className: 'row', onSubmit: this.handleSubmit },
 	            _react2.default.createElement(
 	                'div',
 	                { className: 'input-container col-6' },
