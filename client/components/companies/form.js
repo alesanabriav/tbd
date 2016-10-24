@@ -19,6 +19,11 @@ export default React.createClass({
     this.props.handleSubmit(this.state);
   },
 
+  cancel(e) {
+      e.preventDefault();
+      this.props.cancel();
+  },
+
   render() {
     return (
       <form className="row" onSubmit={this.handleSubmit}>
@@ -77,7 +82,9 @@ export default React.createClass({
                 onChange={this.handleInputChange.bind(this, 'contact_name')}
                 placeholder="Contacto" />
         </div>
+
         <div className="col-12">
+            <button className="pull-left" onClick={this.cancel}>Cancelar</button>
             <button className="pull-right">Guardar</button>
         </div>
        

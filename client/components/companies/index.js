@@ -47,6 +47,10 @@ const companies =  React.createClass({
     if(data.type == 'add') this.props.dispatch(addCompany(data));
   },
 
+  toggleForm() {
+    this.setState({...this.state, showForm: !this.state.showForm});
+  },
+
   render() {
     const {nameLink, items} = this.props.companies;
     const companiesNodes = items.map((company, ind) => {
@@ -58,7 +62,7 @@ const companies =  React.createClass({
         <div 
           className={this.state.showForm ? "card form_companies form_companies-show" : "card form_companies"}>
           <div className="card__content">
-             <Form handleSubmit={this.handleSubmit} />
+             <Form handleSubmit={this.handleSubmit} cancel={this.toggleForm} />
           </div>
        </div>
 
@@ -66,7 +70,7 @@ const companies =  React.createClass({
           <div className="card__header">
             <h3 className="pull-left">Empresas</h3>
             <Paginate onChange={this.paginate} />
-            <button className="flex-right" onClick={() => this.setState({...this.state, showForm: !this.state.showForm})}>Agregar empresa</button>
+            <button className="flex-right" onClick={this.toggleForm}>Agregar empresa</button>
           </div>
           
           <div className="card__content">

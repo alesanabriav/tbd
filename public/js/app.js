@@ -24995,6 +24995,9 @@
 	  handleSubmit: function handleSubmit(data) {
 	    if (data.type == 'add') this.props.dispatch((0, _companies.addCompany)(data));
 	  },
+	  toggleForm: function toggleForm() {
+	    this.setState(_extends({}, this.state, { showForm: !this.state.showForm }));
+	  },
 	  render: function render() {
 	    var _this = this;
 
@@ -25016,7 +25019,7 @@
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'card__content' },
-	          _react2.default.createElement(_form2.default, { handleSubmit: this.handleSubmit })
+	          _react2.default.createElement(_form2.default, { handleSubmit: this.handleSubmit, cancel: this.toggleForm })
 	        )
 	      ),
 	      _react2.default.createElement(
@@ -25033,9 +25036,7 @@
 	          _react2.default.createElement(_paginate2.default, { onChange: this.paginate }),
 	          _react2.default.createElement(
 	            'button',
-	            { className: 'flex-right', onClick: function onClick() {
-	                return _this.setState(_extends({}, _this.state, { showForm: !_this.state.showForm }));
-	              } },
+	            { className: 'flex-right', onClick: this.toggleForm },
 	            'Agregar empresa'
 	          )
 	        ),
@@ -26779,6 +26780,10 @@
 	        e.preventDefault();
 	        this.props.handleSubmit(this.state);
 	    },
+	    cancel: function cancel(e) {
+	        e.preventDefault();
+	        this.props.cancel();
+	    },
 	    render: function render() {
 	        return _react2.default.createElement(
 	            'form',
@@ -26850,6 +26855,11 @@
 	            _react2.default.createElement(
 	                'div',
 	                { className: 'col-12' },
+	                _react2.default.createElement(
+	                    'button',
+	                    { className: 'pull-left', onClick: this.cancel },
+	                    'Cancelar'
+	                ),
 	                _react2.default.createElement(
 	                    'button',
 	                    { className: 'pull-right' },
