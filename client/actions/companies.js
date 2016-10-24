@@ -1,14 +1,25 @@
 'use strict';
 import request from 'axios';
+
 const TYPE = "COMPANIES";
 
+function fullfiledCompanies(companies) {
+  return { type: `${TYPE}_FULFILLED`, payload: companies};
+};
+
+function failCompanies(err) {
+  return { type: `${TYPE}_FAIL`, payload: err};
+};
+
 export function fetchCompanies(params = {}) {
-  return function(dispatch) {
-    request
+  return dispatch => {
+    return request
     .get('/api/v1/companies', {params: params})
     .then(res => {
-      dispatch({ type: `${TYPE}_FULFILLED`, payload: res.data });
+
+      return dispatch(fullfiledCompanies(res.data));
     })
+    .catch(err => dispatch( failCompanies(err) ));
   }
 }
 
