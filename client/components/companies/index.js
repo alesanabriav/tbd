@@ -16,7 +16,7 @@ import Paginate from './paginate';
 const companies =  React.createClass({
   getInitialState() {
     return {
-      showCreateCompany: false
+      showForm: false
     }
   },
 
@@ -55,9 +55,10 @@ const companies =  React.createClass({
 
     return (
        <div className="col-12 viewport_container">
-        <div className="card form_companies form_companies-show">
+        <div 
+          className={this.state.showForm ? "card form_companies form_companies-show" : "card form_companies"}>
           <div className="card__content">
-             <Form handleSubmit={this.handleSubmit}/>
+             <Form handleSubmit={this.handleSubmit} />
           </div>
        </div>
 
@@ -65,7 +66,7 @@ const companies =  React.createClass({
           <div className="card__header">
             <h3 className="pull-left">Empresas</h3>
             <Paginate onChange={this.paginate} />
-            <button className="flex-right">Agregar empresa</button>
+            <button className="flex-right" onClick={() => this.setState({...this.state, showForm: !this.state.showForm})}>Agregar empresa</button>
           </div>
           
           <div className="card__content">

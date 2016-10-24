@@ -24937,6 +24937,8 @@
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
@@ -24967,7 +24969,7 @@
 	  displayName: 'companies',
 	  getInitialState: function getInitialState() {
 	    return {
-	      showCreateCompany: false
+	      showForm: false
 	    };
 	  },
 	  componentWillMount: function componentWillMount() {
@@ -25009,7 +25011,8 @@
 	      { className: 'col-12 viewport_container' },
 	      _react2.default.createElement(
 	        'div',
-	        { className: 'card form_companies form_companies-show' },
+	        {
+	          className: this.state.showForm ? "card form_companies form_companies-show" : "card form_companies" },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'card__content' },
@@ -25030,7 +25033,9 @@
 	          _react2.default.createElement(_paginate2.default, { onChange: this.paginate }),
 	          _react2.default.createElement(
 	            'button',
-	            { className: 'flex-right' },
+	            { className: 'flex-right', onClick: function onClick() {
+	                return _this.setState(_extends({}, _this.state, { showForm: !_this.state.showForm }));
+	              } },
 	            'Agregar empresa'
 	          )
 	        ),
@@ -26890,7 +26895,7 @@
 
 
 	// module
-	exports.push([module.id, "* {\n  box-sizing: border-box; }\n\nbody {\n  background: #f1f1f1;\n  font-family: 'Open Sans', sans-serif;\n  margin-left: 200px;\n  color: #313131; }\n\n.color_base {\n  background: #F09121; }\n\n.color-medium {\n  background: #D5811D; }\n\nbutton {\n  border: none;\n  padding: .5rem 1rem;\n  text-decoration: none;\n  transition: all 300ms ease;\n  background: #fff;\n  cursor: pointer; }\n  button:focus {\n    outline: none; }\n  button:hover {\n    background: #ddd; }\n\nul {\n  padding: 0; }\n\nli {\n  list-style: none; }\n\na {\n  text-decoration: none;\n  color: #313131; }\n  a:hover {\n    text-decoration: none; }\n\n.pull-left {\n  float: left; }\n\n.pull-right {\n  float: right; }\n\n.flex-right {\n  margin-left: auto; }\n\n.vertical_align, .card__header {\n  display: flex;\n  align-items: center; }\n\n.card__header {\n  background: #F09121;\n  padding: 1rem;\n  font-weight: bold;\n  color: #603A0D;\n  width: 100%; }\n\n.card__content {\n  background: #fff;\n  padding: 1rem; }\n\n.nav {\n  display: inline-block;\n  background: #313131;\n  height: 100%;\n  position: fixed;\n  left: 0;\n  top: 0;\n  width: 200px; }\n  .nav__logo {\n    display: block;\n    padding: 1rem;\n    font-size: 1.5rem;\n    color: #F09121; }\n    .nav__logo a {\n      color: #F09121; }\n  .nav__menu {\n    padding: 0; }\n    .nav__menu li {\n      width: 100%;\n      display: block;\n      float: left; }\n      .nav__menu li a {\n        color: #fff;\n        display: block;\n        padding: 1rem;\n        background: #2c2c2c;\n        margin-bottom: 1rem;\n        transition: all 300ms ease; }\n        .nav__menu li a:hover {\n          background: #272727; }\n\n.companies .btn-group {\n  padding-left: 1rem; }\n\ninput {\n  padding: .5rem;\n  width: 100%;\n  border: none;\n  border-bottom: 2px solid #ddd;\n  margin-bottom: 1rem;\n  transition: all 300ms ease; }\n  input:focus {\n    outline: none;\n    border-color: #F09121; }\n\n.form_companies {\n  position: absolute;\n  top: -100%;\n  transition: all 300ms ease; }\n  .form_companies-show {\n    top: 0; }\n\n.viewport_container {\n  position: relative;\n  overflow: hidden; }\n\n.row::after {\n  content: \"\";\n  clear: both;\n  display: block; }\n\n[class*=\"col-\"] {\n  float: left;\n  padding: 15px; }\n\n.col-1 {\n  width: 8.33333%; }\n\n.col-2 {\n  width: 16.66667%; }\n\n.col-3 {\n  width: 25%; }\n\n.col-4 {\n  width: 33.33333%; }\n\n.col-5 {\n  width: 41.66667%; }\n\n.col-6 {\n  width: 50%; }\n\n.col-7 {\n  width: 58.33333%; }\n\n.col-8 {\n  width: 66.66667%; }\n\n.col-9 {\n  width: 75%; }\n\n.col-10 {\n  width: 83.33333%; }\n\n.col-11 {\n  width: 91.66667%; }\n\n.col-12 {\n  width: 100%; }\n\ntable {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem;\n  border-collapse: collapse; }\n  table thead th {\n    text-align: left;\n    vertical-align: bottom;\n    border-bottom: 2px solid #ddd;\n    padding: .75rem; }\n  table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #eceeef; }\n", ""]);
+	exports.push([module.id, "* {\n  box-sizing: border-box; }\n\nbody {\n  background: #f1f1f1;\n  font-family: 'Open Sans', sans-serif;\n  margin-left: 200px;\n  color: #313131; }\n\n.color_base {\n  background: #F09121; }\n\n.color-medium {\n  background: #D5811D; }\n\nbutton {\n  border: none;\n  padding: .5rem 1rem;\n  text-decoration: none;\n  transition: all 300ms ease;\n  background: #fff;\n  cursor: pointer; }\n  button:focus {\n    outline: none; }\n  button:hover {\n    background: #ddd; }\n\nul {\n  padding: 0; }\n\nli {\n  list-style: none; }\n\na {\n  text-decoration: none;\n  color: #313131; }\n  a:hover {\n    text-decoration: none; }\n\n.pull-left {\n  float: left; }\n\n.pull-right {\n  float: right; }\n\n.flex-right {\n  margin-left: auto; }\n\n.vertical_align, .card__header {\n  display: flex;\n  align-items: center; }\n\n.card__header {\n  background: #F09121;\n  padding: 1rem;\n  font-weight: bold;\n  color: #603A0D;\n  width: 100%; }\n\n.card__content {\n  background: #fff;\n  padding: 1rem; }\n\n.nav {\n  display: inline-block;\n  background: #313131;\n  height: 100%;\n  position: fixed;\n  left: 0;\n  top: 0;\n  width: 200px; }\n  .nav__logo {\n    display: block;\n    padding: 1rem;\n    font-size: 1.5rem;\n    color: #F09121; }\n    .nav__logo a {\n      color: #F09121; }\n  .nav__menu {\n    padding: 0; }\n    .nav__menu li {\n      width: 100%;\n      display: block;\n      float: left; }\n      .nav__menu li a {\n        color: #fff;\n        display: block;\n        padding: 1rem;\n        background: #2c2c2c;\n        margin-bottom: 1rem;\n        transition: all 300ms ease; }\n        .nav__menu li a:hover {\n          background: #272727; }\n\n.companies .btn-group {\n  padding-left: 1rem; }\n\ninput {\n  padding: .5rem;\n  width: 100%;\n  border: none;\n  border-bottom: 2px solid #ddd;\n  margin-bottom: 1rem;\n  transition: all 300ms ease; }\n  input:focus {\n    outline: none;\n    border-color: #F09121; }\n\n@keyframes sk {\n  from {\n    transform: translateY(-100%); }\n  to {\n    transform: translateY(0); } }\n\n.form_companies {\n  display: none;\n  transition: all 300ms ease;\n  margin-bottom: 1rem; }\n  .form_companies-show {\n    display: block;\n    animation-name: sk;\n    animation-duration: 300ms; }\n\n.viewport_container {\n  position: relative;\n  overflow: hidden; }\n\n.row::after {\n  content: \"\";\n  clear: both;\n  display: block; }\n\n[class*=\"col-\"] {\n  float: left;\n  padding: 15px; }\n\n.col-1 {\n  width: 8.33333%; }\n\n.col-2 {\n  width: 16.66667%; }\n\n.col-3 {\n  width: 25%; }\n\n.col-4 {\n  width: 33.33333%; }\n\n.col-5 {\n  width: 41.66667%; }\n\n.col-6 {\n  width: 50%; }\n\n.col-7 {\n  width: 58.33333%; }\n\n.col-8 {\n  width: 66.66667%; }\n\n.col-9 {\n  width: 75%; }\n\n.col-10 {\n  width: 83.33333%; }\n\n.col-11 {\n  width: 91.66667%; }\n\n.col-12 {\n  width: 100%; }\n\ntable {\n  width: 100%;\n  max-width: 100%;\n  margin-bottom: 1rem;\n  border-collapse: collapse; }\n  table thead th {\n    text-align: left;\n    vertical-align: bottom;\n    border-bottom: 2px solid #ddd;\n    padding: .75rem; }\n  table td {\n    padding: .75rem;\n    vertical-align: top;\n    border-top: 1px solid #eceeef; }\n", ""]);
 
 	// exports
 

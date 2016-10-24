@@ -151,13 +151,25 @@ input {
   }
 }
 
+@keyframes sk{
+  from {
+    transform: translateY(-100%);
+  }
+  
+  to {
+    transform: translateY(0);
+  }
+}
+
 .form_companies {
-  position: absolute;
-  top: -100%;
+  display: none;
   transition: $transition;
+  margin-bottom: 1rem;
 
   &-show {
-    top: 0;
+   display: block;
+   animation-name: sk;
+   animation-duration: 300ms;
   }
 }
 
