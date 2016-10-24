@@ -1,5 +1,8 @@
 'use strict';
+import _ from 'lodash';
+
 const TYPE = 'COMPANIES';
+
 const initiState = {
   items: [],
   query: {
@@ -32,6 +35,18 @@ export default function reducer(state = initiState, action) {
       return {
         ...state,
         query: action.payload
+      };
+    break;
+    case `${TYPE}_ADD`:
+      return {
+        ...state,
+        items: [...[ action.payload ], ...state.items]
+      };
+    break;
+    case `${TYPE}_REMOVE`:
+      return {
+        ...state,
+        items: state.items.filter(item => item.id != action.payload)
       };
     break;
     default:

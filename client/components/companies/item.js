@@ -2,13 +2,18 @@
 import React from 'react';
 
 export default React.createClass({
-  addCompanyToList() {
+  addToList() {
     this.props.addToList(this.props.company);
   },
 
-  editCompany(e) {
+  edit(e) {
     if(e) e.preventDefault();
-    this.props.editCompany(this.props.company);
+    this.props.edit(this.props.company);
+  },
+
+  remove(e) {
+    if(e) e.preventDefault();
+    this.props.remove(this.props.company.id);
   },
 
   render() {
@@ -20,8 +25,9 @@ export default React.createClass({
         <td>{email}</td>
         <td>{phone}</td>
         <td>
-          <button onClick={this.editCompany}>Editar</button>
-          <button onClick={this.addCompanyToList}>Agregar</button>
+          <button onClick={this.edit}>Editar</button>
+          <button onClick={this.remove}>Eliminar</button>
+          <button onClick={this.addToList}>Agregar</button>
           </td>
       </tr>
     )

@@ -34,6 +34,27 @@ export function searchCompanies(query, name) {
   }
 }
 
+export function addCompany(company) {
+  return function(dispatch) {
+    request
+    .post('/api/v1/companies', company)
+    .then(res => {
+      dispatch({type: `${TYPE}_ADD`, payload: res.data})
+    })
+  }
+}
+
+export function removeCompany(id) {
+  return function(dispatch) {
+    request
+    .delete('/api/v1/companies',  {data:{id}})
+    .then(res => {
+      dispatch({type: `${TYPE}_REMOVE`, payload: id})
+    })
+  }
+  
+}
+
 export function addCompanyToList() {
 
 }

@@ -150,5 +150,21 @@ input {
     border-color: $orange_base;
   }
 }
+
+.form_companies {
+  position: absolute;
+  top: -100%;
+  transition: $transition;
+
+  &-show {
+    top: 0;
+  }
+}
+
+.viewport_container {
+  position: relative;
+  overflow: hidden;
+}
+
 @import 'grid';
 @import 'table';

@@ -30,9 +30,20 @@ export default function(sequelize) {
 
       Model
       .create(company)
-      .then(res => {
-        console.log(res);
+      .then(companyStored => {
+       res.json(companyStored);
       })
+    },
+
+    destroy(req, res) {
+      let id = req.body.id;
+      Model
+      .findOne({where: {id: id}})
+      .then(mod => {
+        return mod.destroy();
+      })
+      .then(() => res.json({destroy: 'ok'}))
+     
     }
   }
 }

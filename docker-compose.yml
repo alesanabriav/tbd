@@ -2,11 +2,11 @@ version: '2'
 services:
   node:
     build: .
-    ports: 
-      - "4040:4040"
     volumes:
-      - ".:/var/www/app"
-  
+      -  ~/apps/tbd:/var/www/
+      - /var/www/node_modules
+    ports:
+      - "4040"
   mysql:
     image: mysql:latest
     environment:

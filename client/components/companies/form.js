@@ -4,7 +4,7 @@ import React from 'react';
 export default React.createClass({
   getInitialState() {
     return {
-
+			type: 'add'
     }
   },
 
@@ -16,7 +16,7 @@ export default React.createClass({
   
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
+    this.props.handleSubmit(this.state);
   },
 
   render() {

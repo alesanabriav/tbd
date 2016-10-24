@@ -2,11 +2,24 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import request from 'axios';
-import  {fetchCompanies, paginateCompanies, searchCompanies} from '../../actions/companies';
+import  {
+  fetchCompanies, 
+  paginateCompanies,
+  searchCompanies,
+  addCompany,
+  removeCompany
+} from '../../actions/companies';
 import Item from './item';
 import Form from './form';
+import Paginate from './paginate';
 
 const companies =  React.createClass({
+  getInitialState() {
+    return {
+      showCreateCompany: false
+    }
+  },
+
   componentWillMount() {
     this.props.dispatch(fetchCompanies());
   },
@@ -26,38 +39,35 @@ const companies =  React.createClass({
     console.log('edit', e);
   },
 
+  remove(id) {
+    this.props.dispatch(removeCompany(id));
+  },
+
+  handleSubmit(data) {
+    if(data.type == 'add') this.props.dispatch(addCompany(data));
+  },
+
   render() {
     const {nameLink, items} = this.props.companies;
     const companiesNodes = items.map((company, ind) => {
-      return <Item key={ind} company={company} editCompany={this.edit} />
+      return <Item key={ind} company={company} edit={this.edit} remove={this.remove} />
     });
 
     return (
-       <div className="col-12">
-        <div className="card companies">
+       <div className="col-12 viewport_container">
+        <div className="card form_companies form_companies-show">
           <div className="card__content">
-             <Form />
+             <Form handleSubmit={this.handleSubmit}/>
           </div>
        </div>
+
         <div className="card companies">
           <div className="card__header">
             <h3 className="pull-left">Empresas</h3>
-            <div className="btn-group">
-              <button 
-                className="btn-group__btn" 
-                onClick={this.paginate.bind(this, 'less')}> 
-                <i className="ion-chevron-left"></i> 
-              </button>
-
-              <button 
-                className="btn-group__btn" 
-                onClick={this.paginate.bind(this, 'more')}> 
-                <i className="ion-chevron-right"></i> 
-              </button>
-              
-            </div>
+            <Paginate onChange={this.paginate} />
             <button className="flex-right">Agregar empresa</button>
           </div>
+          
           <div className="card__content">
 
             <input 
