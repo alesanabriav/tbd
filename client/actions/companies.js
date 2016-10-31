@@ -55,6 +55,16 @@ export function addCompany(company) {
   }
 }
 
+export function updateCompany(company) {
+  return function(dispatch) {
+    request
+    .put(`/api/v1/companies/${company.id}`, company)
+    .then(res => {
+      dispatch({type: `${TYPE}_UPDATE`, payload: res.data})
+    })
+  }
+}
+
 export function removeCompany(id) {
   return function(dispatch) {
     request

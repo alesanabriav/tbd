@@ -24825,6 +24825,19 @@
 	        items: [action.payload].concat(_toConsumableArray(state.items))
 	      });
 	      break;
+	    case TYPE + '_UPDATE':
+	      var items = state.items.map(function (item) {
+	        if (item.id == action.payload.id) {
+	          return _extends({}, item, action.payload);
+	        }
+
+	        return item;
+	      });
+
+	      return _extends({}, state, {
+	        items: items
+	      });
+	      break;
 	    case TYPE + '_REMOVE':
 	      return _extends({}, state, {
 	        items: state.items.filter(function (item) {
@@ -41978,14 +41991,15 @@
 	  },
 	  edit: function edit(e) {
 	    console.log('edit', e);
-	    this.setState(_extends({}, this.state, { company: e }));
+	    window.location = '#companyform';
+	    this.setState(_extends({}, this.state, { company: e, showForm: true }));
 	  },
 	  remove: function remove(id) {
 	    this.props.dispatch((0, _companies.removeCompany)(id));
 	  },
 	  handleSubmit: function handleSubmit(data) {
 	    if (data.type == 'add') this.props.dispatch((0, _companies.addCompany)(data));
-	    if (data.type == 'update') this.props.dispatch((0, _companies.addCompany)(data));
+	    if (data.type == 'update') this.props.dispatch((0, _companies.updateCompany)(data));
 	  },
 	  toggleForm: function toggleForm() {
 	    this.setState(_extends({}, this.state, { showForm: !this.state.showForm }));
@@ -43594,6 +43608,7 @@
 	exports.paginateCompanies = paginateCompanies;
 	exports.searchCompanies = searchCompanies;
 	exports.addCompany = addCompany;
+	exports.updateCompany = updateCompany;
 	exports.removeCompany = removeCompany;
 	exports.addCompanyToList = addCompanyToList;
 	exports.setCompany = setCompany;
@@ -43655,6 +43670,14 @@
 	  return function (dispatch) {
 	    _axios2.default.post('/api/v1/companies', company).then(function (res) {
 	      dispatch({ type: TYPE + '_ADD', payload: res.data });
+	    });
+	  };
+	}
+
+	function updateCompany(company) {
+	  return function (dispatch) {
+	    _axios2.default.put('/api/v1/companies/' + company.id, company).then(function (res) {
+	      dispatch({ type: TYPE + '_UPDATE', payload: res.data });
 	    });
 	  };
 	}
@@ -43771,28 +43794,31 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	var initialState = {
+	    type: 'add',
+	    name: '',
+	    commercial_name: '',
+	    nit: '',
+	    email: '',
+	    city: '',
+	    address: '',
+	    phone: '',
+	    contact_name: ''
+	};
 
 	exports.default = _react2.default.createClass({
 	    displayName: 'form',
 	    getInitialState: function getInitialState() {
-	        return {
-	            type: 'add',
-	            name: '',
-	            commercial_name: '',
-	            nit: '',
-	            email: '',
-	            city: '',
-	            address: '',
-	            phone: '',
-	            contact_name: ''
-	        };
+	        return initialState;
 	    },
 	    componentWillReceiveProps: function componentWillReceiveProps(props) {
-	        console.log(props);
 	        if (props.company.id) {
+	            Object.keys(props.company).forEach(function (key) {
+	                props.company[key] = props.company[key] == null ? '' : props.company[key];
+	            });
+
 	            var newState = _extends({}, props.company, { type: 'update' });
-	            this.setState.apply(this, _toConsumableArray(this.state).concat([newState]));
+	            this.setState(_extends({}, initialState, newState));
 	        }
 	    },
 	    handleInputChange: function handleInputChange(field, evt) {
@@ -43810,9 +43836,10 @@
 	    },
 	    render: function render() {
 	        console.log(this.state);
+
 	        return _react2.default.createElement(
 	            'form',
-	            { className: 'row', onSubmit: this.handleSubmit },
+	            { className: 'row', onSubmit: this.handleSubmit, id: 'companyform' },
 	            _react2.default.createElement(
 	                'div',
 	                { className: 'input-container col-6' },

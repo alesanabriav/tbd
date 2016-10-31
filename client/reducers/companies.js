@@ -43,6 +43,20 @@ export default function reducer(state = initiState, action) {
         items: [...[ action.payload ], ...state.items]
       };
     break;
+    case `${TYPE}_UPDATE`:
+      let items =  state.items.map(item => {
+          if(item.id == action.payload.id) {
+            return {...item, ...action.payload};
+          }
+
+          return item;
+        });
+
+      return {
+        ...state,
+        items: items
+      };
+    break;
     case `${TYPE}_REMOVE`:
       return {
         ...state,

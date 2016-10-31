@@ -34,7 +34,7 @@ export default function(sequelize) {
     },
 
     update(req, res) {
-      console.log(req.body);
+     res.json(req.body);
     },
 
     destroy(req, res) {

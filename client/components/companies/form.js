@@ -1,26 +1,32 @@
 'use strict';
 import React from 'react';
 
+const initialState = {
+    type: 'add',
+    name: '',
+    commercial_name: '',
+    nit: '',
+    email: '',
+    city: '',
+    address: '',
+    phone: '',
+    contact_name: ''
+};
+
 export default React.createClass({
   getInitialState() {
-    return {
-	    type: 'add',
-        name: '',
-        commercial_name: '',
-        nit: '',
-        email: '',
-        city: '',
-        address: '',
-        phone: '',
-        contact_name: '',
-    }
+    return initialState;
   },
 
   componentWillReceiveProps(props) {
-      console.log(props);
       if(props.company.id) {
+        Object.keys(props.company)
+        .forEach((key) => {
+            props.company[key] = props.company[key] == null ? '' : props.company[key];
+        });
+
           let newState = {...props.company, type: 'update'};
-          this.setState(...this.state, newState);
+          this.setState({...initialState, ...newState});
       }
     },
 
@@ -42,8 +48,9 @@ export default React.createClass({
 
   render() {
       console.log(this.state);
+
     return (
-      <form className="row" onSubmit={this.handleSubmit}>
+      <form className="row" onSubmit={this.handleSubmit} id="companyform">
         <div className="input-container col-6">
             <input 
                 type="text" 
@@ -107,7 +114,7 @@ export default React.createClass({
             />
         </div>
 
-				<div className="input-container col-6">
+		<div className="input-container col-6">
             <input 
                 type="text" 
                 onChange={this.handleInputChange.bind(this, 'contact_name')}

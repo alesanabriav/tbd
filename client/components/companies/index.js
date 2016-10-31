@@ -7,6 +7,7 @@ import  {
   paginateCompanies,
   searchCompanies,
   addCompany,
+  updateCompany,
   removeCompany
 } from '../../actions/companies';
 import Item from './item';
@@ -38,7 +39,8 @@ const companies =  React.createClass({
 
   edit(e) {
     console.log('edit', e);
-    this.setState({...this.state, company: e});
+    window.location = '#companyform';
+    this.setState({...this.state, company: e, showForm: true});
   },
 
   remove(id) {
@@ -47,7 +49,7 @@ const companies =  React.createClass({
 
   handleSubmit(data) {
     if(data.type == 'add') this.props.dispatch(addCompany(data));
-    if(data.type == 'update') this.props.dispatch(addCompany(data));
+    if(data.type == 'update') this.props.dispatch(updateCompany(data));
   },
 
   toggleForm() {
