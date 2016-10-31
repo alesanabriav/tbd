@@ -47,6 +47,7 @@ const companies =  React.createClass({
 
   handleSubmit(data) {
     if(data.type == 'add') this.props.dispatch(addCompany(data));
+    if(data.type == 'update') this.props.dispatch(addCompany(data));
   },
 
   toggleForm() {

@@ -4,7 +4,15 @@ import React from 'react';
 export default React.createClass({
   getInitialState() {
     return {
-	    type: 'add'
+	    type: 'add',
+        name: '',
+        commercial_name: '',
+        nit: '',
+        email: '',
+        city: '',
+        address: '',
+        phone: '',
+        contact_name: '',
     }
   },
 
@@ -14,7 +22,7 @@ export default React.createClass({
           let newState = {...props.company, type: 'update'};
           this.setState(...this.state, newState);
       }
-  },
+    },
 
   handleInputChange(field, evt) {
     let newState = {};
@@ -40,56 +48,72 @@ export default React.createClass({
             <input 
                 type="text" 
                 onChange={this.handleInputChange.bind(this, 'name')}
-                placeholder="Razón social" />
+                placeholder="Razón social" 
+                value={this.state.name}
+            />
         </div>
         
         <div className="input-container col-6">
             <input 
                 type="text" 
                 onChange={this.handleInputChange.bind(this, 'commercial_name')}
-                placeholder="Nombre comercial" />
+                placeholder="Nombre comercial" 
+                value={this.state.commercial_name}
+            />
         </div>
 
         <div className="input-container col-6">
             <input 
                 type="text" 
                 onChange={this.handleInputChange.bind(this, 'nit')}
-                placeholder="NIT" />
+                placeholder="NIT" 
+                value={this.state.nit}
+            />
         </div>
         
         <div className="input-container col-6">
             <input 
                 type="text" 
                 onChange={this.handleInputChange.bind(this, 'email')}
-                placeholder="Email" />
+                placeholder="Email" 
+                value={this.state.email}
+            />
         </div>
 
          <div className="input-container col-6">
             <input 
                 type="text" 
                 onChange={this.handleInputChange.bind(this, 'city')}
-                placeholder="Ciudad" />
+                placeholder="Ciudad" 
+                value={this.state.city}
+            />
         </div>
 
         <div className="input-container col-6">
             <input 
                 type="text" 
                 onChange={this.handleInputChange.bind(this, 'address')}
-                placeholder="Dirección" />
+                placeholder="Dirección" 
+                value={this.state.address}
+            />
         </div>
 
         <div className="input-container col-6">
             <input 
                 type="text" 
                 onChange={this.handleInputChange.bind(this, 'phone')}
-                placeholder="Teléfono" />
+                placeholder="Teléfono" 
+                value={this.state.phone}
+            />
         </div>
 
 				<div className="input-container col-6">
             <input 
                 type="text" 
                 onChange={this.handleInputChange.bind(this, 'contact_name')}
-                placeholder="Contacto" />
+                placeholder="Contacto" 
+                value={this.state.contact_name}
+            />
         </div>
 
         <div className="col-12">

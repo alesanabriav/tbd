@@ -41985,6 +41985,7 @@
 	  },
 	  handleSubmit: function handleSubmit(data) {
 	    if (data.type == 'add') this.props.dispatch((0, _companies.addCompany)(data));
+	    if (data.type == 'update') this.props.dispatch((0, _companies.addCompany)(data));
 	  },
 	  toggleForm: function toggleForm() {
 	    this.setState(_extends({}, this.state, { showForm: !this.state.showForm }));
@@ -43776,7 +43777,15 @@
 	    displayName: 'form',
 	    getInitialState: function getInitialState() {
 	        return {
-	            type: 'add'
+	            type: 'add',
+	            name: '',
+	            commercial_name: '',
+	            nit: '',
+	            email: '',
+	            city: '',
+	            address: '',
+	            phone: '',
+	            contact_name: ''
 	        };
 	    },
 	    componentWillReceiveProps: function componentWillReceiveProps(props) {
@@ -43810,7 +43819,9 @@
 	                _react2.default.createElement('input', {
 	                    type: 'text',
 	                    onChange: this.handleInputChange.bind(this, 'name'),
-	                    placeholder: 'Raz\xF3n social' })
+	                    placeholder: 'Raz\xF3n social',
+	                    value: this.state.name
+	                })
 	            ),
 	            _react2.default.createElement(
 	                'div',
@@ -43818,7 +43829,9 @@
 	                _react2.default.createElement('input', {
 	                    type: 'text',
 	                    onChange: this.handleInputChange.bind(this, 'commercial_name'),
-	                    placeholder: 'Nombre comercial' })
+	                    placeholder: 'Nombre comercial',
+	                    value: this.state.commercial_name
+	                })
 	            ),
 	            _react2.default.createElement(
 	                'div',
@@ -43826,7 +43839,9 @@
 	                _react2.default.createElement('input', {
 	                    type: 'text',
 	                    onChange: this.handleInputChange.bind(this, 'nit'),
-	                    placeholder: 'NIT' })
+	                    placeholder: 'NIT',
+	                    value: this.state.nit
+	                })
 	            ),
 	            _react2.default.createElement(
 	                'div',
@@ -43834,7 +43849,9 @@
 	                _react2.default.createElement('input', {
 	                    type: 'text',
 	                    onChange: this.handleInputChange.bind(this, 'email'),
-	                    placeholder: 'Email' })
+	                    placeholder: 'Email',
+	                    value: this.state.email
+	                })
 	            ),
 	            _react2.default.createElement(
 	                'div',
@@ -43842,7 +43859,9 @@
 	                _react2.default.createElement('input', {
 	                    type: 'text',
 	                    onChange: this.handleInputChange.bind(this, 'city'),
-	                    placeholder: 'Ciudad' })
+	                    placeholder: 'Ciudad',
+	                    value: this.state.city
+	                })
 	            ),
 	            _react2.default.createElement(
 	                'div',
@@ -43850,7 +43869,9 @@
 	                _react2.default.createElement('input', {
 	                    type: 'text',
 	                    onChange: this.handleInputChange.bind(this, 'address'),
-	                    placeholder: 'Direcci\xF3n' })
+	                    placeholder: 'Direcci\xF3n',
+	                    value: this.state.address
+	                })
 	            ),
 	            _react2.default.createElement(
 	                'div',
@@ -43858,7 +43879,9 @@
 	                _react2.default.createElement('input', {
 	                    type: 'text',
 	                    onChange: this.handleInputChange.bind(this, 'phone'),
-	                    placeholder: 'Tel\xE9fono' })
+	                    placeholder: 'Tel\xE9fono',
+	                    value: this.state.phone
+	                })
 	            ),
 	            _react2.default.createElement(
 	                'div',
@@ -43866,7 +43889,9 @@
 	                _react2.default.createElement('input', {
 	                    type: 'text',
 	                    onChange: this.handleInputChange.bind(this, 'contact_name'),
-	                    placeholder: 'Contacto' })
+	                    placeholder: 'Contacto',
+	                    value: this.state.contact_name
+	                })
 	            ),
 	            _react2.default.createElement(
 	                'div',
