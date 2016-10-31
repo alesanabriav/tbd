@@ -4,8 +4,16 @@ import React from 'react';
 export default React.createClass({
   getInitialState() {
     return {
-			type: 'add'
+	    type: 'add'
     }
+  },
+
+  componentWillReceiveProps(props) {
+      console.log(props);
+      if(props.company.id) {
+          let newState = {...props.company, type: 'update'};
+          this.setState(...this.state, newState);
+      }
   },
 
   handleInputChange(field, evt) {
@@ -25,6 +33,7 @@ export default React.createClass({
   },
 
   render() {
+      console.log(this.state);
     return (
       <form className="row" onSubmit={this.handleSubmit}>
         <div className="input-container col-6">

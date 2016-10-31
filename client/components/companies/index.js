@@ -16,7 +16,8 @@ import Paginate from './paginate';
 const companies =  React.createClass({
   getInitialState() {
     return {
-      showForm: false
+      showForm: false,
+      company: {}
     }
   },
 
@@ -37,6 +38,7 @@ const companies =  React.createClass({
 
   edit(e) {
     console.log('edit', e);
+    this.setState({...this.state, company: e});
   },
 
   remove(id) {
@@ -62,7 +64,11 @@ const companies =  React.createClass({
         <div 
           className={this.state.showForm ? "card form_companies form_companies-show" : "card form_companies"}>
           <div className="card__content">
-             <Form handleSubmit={this.handleSubmit} cancel={this.toggleForm} />
+             <Form 
+                handleSubmit={this.handleSubmit} 
+                cancel={this.toggleForm} 
+                company={this.state.company}
+              />
           </div>
        </div>
 

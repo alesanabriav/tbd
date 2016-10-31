@@ -19,8 +19,7 @@ describe('company actions', () => {
     .stubRequest('/api/v1/companies', {
         status: 200,
         response: [{name: 'company name'}]
-      })
-
+      });
 
      const store = mockStore({ todos: [] });
    

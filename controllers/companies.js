@@ -7,11 +7,11 @@ export default function(sequelize) {
   return {
     get(req, res) {
       let q = req.query;
+      let initialQuery = {limit: 25, order: 'id DESC', offset: 0};
       let order = q.order ? {order: q.order} : {};
       let offset = q.offset ? {offset: parseInt(q.offset)} : {};
       let nameLike = q.nameLike ? {where: {name: {$like: `%${q.nameLike}%`}}} : {};
-      let initialQuery = {limit: 25, order: 'id DESC', offset: 0};
-
+      
       let query = {
         ...initialQuery, 
         ...order, 
@@ -19,12 +19,10 @@ export default function(sequelize) {
         ...nameLike
       };
 
-      console.log(query);
-
       Model.findAll(query)
       .then(companies => res.json(companies));
-
     },
+
     store(req, res) {
       let company = req.body;
 
@@ -33,6 +31,10 @@ export default function(sequelize) {
       .then(companyStored => {
        res.json(companyStored);
       })
+    },
+
+    update(req, res) {
+      console.log(req.body);
     },
 
     destroy(req, res) {
