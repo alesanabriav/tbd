@@ -178,5 +178,15 @@ input {
   overflow: hidden;
 }
 
+.hidden {
+  display: none;
+}
+
+.alert {
+  width: 100%;
+  padding: 7px;
+  background: #FFBD2F;
+}
+
 @import 'grid';
 @import 'table';

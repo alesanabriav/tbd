@@ -1,7 +1,7 @@
 import companies from './companies';
+import lists from './lists';
 
-export default function(seq) {
-  return {
-    companies: companies(seq)
-  }
+export default{
+  companies: companies(),
+  lists: lists()
 }

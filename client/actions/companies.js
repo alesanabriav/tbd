@@ -2,6 +2,7 @@
 import request from 'axios';
 
 const TYPE = "COMPANIES";
+const endpoint = "/api/v1/companies";
 
 function fullfiledCompanies(companies) {
   return { type: `${TYPE}_FULFILLED`, payload: companies};
@@ -11,19 +12,16 @@ function failCompanies(err) {
   return { type: `${TYPE}_FAIL`, payload: err};
 };
 
-export function fetchCompanies(params = {}) {
+export function fetch(params = {}) {
   return dispatch => {
     return request
-    .get('/api/v1/companies', {params: params})
-    .then(res => {
-
-      return dispatch(fullfiledCompanies(res.data));
-    })
+    .get(endpoint, {params})
+    .then(res => dispatch(fullfiledCompanies(res.data)))
     .catch(err => dispatch( failCompanies(err) ));
   }
 }
 
-export function paginateCompanies(query, type) {
+export function paginate(query, type) {
   let {offset} = query;
   if(type == 'more') offset += 25;
   if(type == 'less' && offset > 0) offset -= 25;
@@ -31,11 +29,11 @@ export function paginateCompanies(query, type) {
 
   return function(dispatch) { 
     dispatch({type: `${TYPE}_PAGINATE`, payload: query});
-    dispatch(fetchCompanies(query));
+    dispatch(fetch(query));
   }
 }
 
-export function searchCompanies(query, name) {
+export function search(query, name) {
   if(name.length <= 0) name = null;
   query = {...query, nameLike: name};
   
@@ -45,30 +43,26 @@ export function searchCompanies(query, name) {
   }
 }
 
-export function addCompany(company) {
+export function add(company) {
   return function(dispatch) {
-    request
-    .post('/api/v1/companies', company)
-    .then(res => {
-      dispatch({type: `${TYPE}_ADD`, payload: res.data})
-    })
+    return request
+    .post(endpoint, company)
+    .then(res => dispatch({type: `${TYPE}_ADD`, payload: res.data}))
   }
 }
 
-export function updateCompany(company) {
+export function update(company) {
   return function(dispatch) {
-    request
-    .put(`/api/v1/companies/${company.id}`, company)
-    .then(res => {
-      dispatch({type: `${TYPE}_UPDATE`, payload: res.data})
-    })
+    return request
+    .put(`${endpoint}/${company.id}`, company)
+    .then(res => dispatch({type: `${TYPE}_UPDATE`, payload: res.data}))
   }
 }
 
-export function removeCompany(id) {
+export function remove(id) {
   return function(dispatch) {
     request
-    .delete('/api/v1/companies',  {data:{id}})
+    .delete('/api/v1/companies',  {data: {id}})
     .then(res => {
       dispatch({type: `${TYPE}_REMOVE`, payload: id})
     })
@@ -76,10 +70,15 @@ export function removeCompany(id) {
   
 }
 
-export function addCompanyToList() {
-
+export function addToList(id) {
+  return {type: `${TYPE}_ADD_TO_LIST`, payload: id}
 }
 
-export function setCompany() {
-  
+export function cleanIds() {
+  return {type: `${TYPE}_CLEAN_LIST`, payload: []}
 }
+
+export function setList(id) {
+  return {type: `${TYPE}_SET_LIST`, payload: id}
+}
+

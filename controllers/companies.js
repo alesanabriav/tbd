@@ -1,9 +1,11 @@
 'use strict';
 import Company from '../models/company';
+import List from '../models/list';
+import CompanyList from '../models/company_list';
+const Model = Company;
 
 export default function(sequelize) {
-  const Model = Company(sequelize);
-
+  
   return {
     get(req, res) {
       let q = req.query;
@@ -16,7 +18,8 @@ export default function(sequelize) {
         ...initialQuery, 
         ...order, 
         ...offset,
-        ...nameLike
+        ...nameLike,
+        include: [{model: List}]
       };
 
       Model.findAll(query)
@@ -34,7 +37,12 @@ export default function(sequelize) {
     },
 
     update(req, res) {
-     res.json(req.body);
+      let id = req.params.id;
+
+      Model
+      .findOne({where: {id} })
+      .then(com => com.update(req.body))
+      .then(com => res.json(com));
     },
 
     destroy(req, res) {

@@ -10,9 +10,10 @@ export default React.createClass({
         </div>
         <ul className="nav__menu">
           <li>
-          <a href="/empresas">Empresas</a>
+          <a href="/companies">Empresas</a>
           </li>
-          <li> <a href="/listas">Listas</a></li>
+          <li> <a href="/lists">Listas</a></li>
+          <li> <a href="/campaign">Campaña</a></li>
         </ul>
       </div>
     )

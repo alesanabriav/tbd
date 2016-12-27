@@ -1,10 +1,11 @@
 'use strict';
-import _ from 'lodash';
-
 const TYPE = 'COMPANIES';
 
 const initiState = {
   items: [],
+  company: {},
+  list: null,
+  ids: [],
   query: {
     offset: 0,
     nameLike: null
@@ -18,6 +19,7 @@ export default function reducer(state = initiState, action) {
     case `${TYPE}_FETCH`:
       return {...state, fetching: true};
     break;
+
     case `${TYPE}_FULFILLED`:
       return {
         ...state, 
@@ -25,45 +27,68 @@ export default function reducer(state = initiState, action) {
         items: action.payload
       };
     break;
+
     case `${TYPE}_PAGINATE`:
       return {
         ...state,
         query: action.payload
       };
     break;
+
     case `${TYPE}_SEARCH`:
       return {
         ...state,
         query: action.payload
       };
     break;
+
     case `${TYPE}_ADD`:
       return {
         ...state,
         items: [...[ action.payload ], ...state.items]
       };
     break;
+
     case `${TYPE}_UPDATE`:
-      let items =  state.items.map(item => {
-          if(item.id == action.payload.id) {
-            return {...item, ...action.payload};
-          }
+      let items =  state.items.map(item => 
+        item.id == action.payload.id ? {...item, ...action.payload} : item
+      );
 
-          return item;
-        });
-
-      return {
-        ...state,
-        items: items
-      };
+      return { ...state, items: items };
     break;
+
     case `${TYPE}_REMOVE`:
       return {
         ...state,
         items: state.items.filter(item => item.id != action.payload)
       };
     break;
+
+    case `${TYPE}_ADD_TO_LIST`:
+      return {
+        ...state,
+        ids: [action.payload].concat(state.ids)
+      };
+    break;
+
+    case `${TYPE}_CLEAN_LIST`:
+      return {
+        ...state,
+        ids: []
+      };
+    break;
+
+    case `${TYPE}_SET_LIST`:
+      return {
+        ...state,
+        list: action.payload
+      };
+    break;
+
+    
+    
     default:
       return state;
+    break;
   }
 }

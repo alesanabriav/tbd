@@ -1,6 +1,10 @@
+var path = require('path');
 
  module.exports = {
     watch: true,
+    resolve: {
+  	root: [ path.resolve('./client') ]
+	  },
      entry: {
        app: './client/index.js',
      },

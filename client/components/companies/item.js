@@ -2,6 +2,12 @@
 import React from 'react';
 
 export default React.createClass({
+  getInitialState() {
+    return {
+      showRemove: false
+    }
+  },
+
   addToList() {
     this.props.addToList(this.props.company);
   },
@@ -16,18 +22,24 @@ export default React.createClass({
     this.props.remove(this.props.company.id);
   },
 
+  showRemove() {
+    this.setState({showRemove: !this.state.showRemove});
+  },
+
+  add(e) {
+    this.props.onAddToList(this.props.company.id);
+  },
+
   render() {
     const {id, name, email, phone} = this.props.company;
     return (
       <tr>
-        <td>{id}</td>
+        <td><input type="checkbox" onChange={this.add} /></td>
         <td>{name}</td>
-        <td>{email}</td>
-        <td>{phone}</td>
         <td>
           <button onClick={this.edit}>Editar</button>
-          <button onClick={this.remove}>Eliminar</button>
-          <button onClick={this.addToList}>Agregar</button>
+          <button onClick={this.showRemove} className={this.state.showRemove ? 'hidden' : ''}>Eliminar</button>
+          <button onClick={this.remove} className={this.state.showRemove ? '' : 'hidden'}>Seguro?</button>
           </td>
       </tr>
     )

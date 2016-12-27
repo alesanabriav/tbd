@@ -28,17 +28,20 @@
     "chai": "^3.5.0",
     "express": "^4.14.0",
     "express-jwt": "^5.1.0",
+    "multer": "^1.2.1",
     "mysql": "^2.11.1",
     "node-sass": "^3.10.1",
     "page.js": "^4.13.3",
+    "quill": "^1.1.6",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
     "redux": "^3.6.0",
     "redux-logger": "^2.7.0",
     "redux-thunk": "^2.1.0",
-    "sendgrid": "^4.7.0",
-    "sequelize": "^3.24.5"
+    "sendgrid": "^4.7.1",
+    "sequelize": "^3.24.5",
+    "uid": "0.0.2"
   },
   "devDependencies": {
     "babel-jest": "^16.0.0",

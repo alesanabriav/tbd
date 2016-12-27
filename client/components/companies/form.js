@@ -47,7 +47,6 @@ export default React.createClass({
   },
 
   render() {
-      console.log(this.state);
 
     return (
       <form className="row" onSubmit={this.handleSubmit} id="companyform">

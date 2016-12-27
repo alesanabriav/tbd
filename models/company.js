@@ -1,9 +1,8 @@
 'use strict';
 import Sequelize from 'sequelize';
+import seq from './connection';
 
-export default function company(seq) {
-
-  return seq.define('companies', {
+export default seq.define('companies', {
     name: {
       type: Sequelize.STRING
     },
@@ -25,5 +24,5 @@ export default function company(seq) {
   },
   {
     underscored: true
-  });
-}
+});
+

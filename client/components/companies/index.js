@@ -1,66 +1,91 @@
 'use strict';
 import React from 'react';
 import {connect} from 'react-redux';
-import request from 'axios';
-import  {
-  fetchCompanies, 
-  paginateCompanies,
-  searchCompanies,
-  addCompany,
-  updateCompany,
-  removeCompany
-} from '../../actions/companies';
+import * as action from 'actions/companies';
+import * as listAction from 'actions/lists';
 import Item from './item';
 import Form from './form';
-import Paginate from './paginate';
+import Paginate from '../paginate';
+import ListOptions from '../lists/options';
 
 const companies =  React.createClass({
   getInitialState() {
     return {
       showForm: false,
+      showAlert: false,
       company: {}
     }
   },
 
   componentWillMount() {
-    this.props.dispatch(fetchCompanies());
+    this.props.dispatch(action.fetch());
+    this.props.dispatch(listAction.fetch());
   },
 
   paginate(type, evt) {
     if(evt) evt.preventDefault();
     let {query} = this.props.companies;
-    this.props.dispatch(paginateCompanies(query, type));
+    this.props.dispatch(action.paginate(query, type));
   },
 
   search(evt) {
     let {query} = this.props.companies;
-    this.props.dispatch(searchCompanies(query, evt.target.value));
+    this.props.dispatch(action.search(query, evt.target.value));
   },
 
   edit(e) {
-    console.log('edit', e);
     window.location = '#companyform';
     this.setState({...this.state, company: e, showForm: true});
   },
 
   remove(id) {
-    this.props.dispatch(removeCompany(id));
+    this.props.dispatch(action.remove(id));
   },
 
   handleSubmit(data) {
-    if(data.type == 'add') this.props.dispatch(addCompany(data));
-    if(data.type == 'update') this.props.dispatch(updateCompany(data));
+    if(data.type == 'add') {
+      this.props.dispatch(action.add(data))
+      .then(() => this.toggleForm())
+    }
+
+    if(data.type == 'update') {
+      this.props.dispatch(action.update(data))
+      .then(() => this.toggleForm())
+    }
   },
 
   toggleForm() {
     this.setState({...this.state, showForm: !this.state.showForm});
   },
 
+  addToList(id) {
+    this.props.dispatch(action.addToList(id));
+  },
+
+  handleListId(id) {
+    this.props.dispatch(action.setList(id));
+  },
+
+  addCompanies() {
+    let {list, ids} = this.props.companies;
+    this.props.dispatch(listAction.addCompanies(list, ids))
+    .then(() => {
+      this.setState({showAlert: true});
+      this.props.dispatch(action.cleanIds())
+    });
+  },
+  
   render() {
     const {nameLink, items} = this.props.companies;
-    const companiesNodes = items.map((company, ind) => {
-      return <Item key={ind} company={company} edit={this.edit} remove={this.remove} />
-    });
+    const companiesNodes = items.map((company, ind) =>
+      <Item 
+        key={ind} 
+        company={company} 
+        edit={this.edit} 
+        remove={this.remove} 
+        onAddToList={this.addToList}
+        />
+    );
 
     return (
        <div className="col-12 viewport_container">
@@ -91,13 +116,17 @@ const companies =  React.createClass({
               value={nameLink} 
             />
 
+        <ListOptions items={this.props.lists.items} onChange={this.handleListId} />
+
+        <button onClick={this.addCompanies}>Agregar</button>
+
+        <div className={ this.state.showAlert ? "alert" : "hidden"}> Empresas Agregadas </div>
+
               <table>
                 <thead>
                   <tr>
                     <th>#</th>
                     <th>Razón Social</th>
-                    <th>Email</th>
-                    <th>Teléfono</th>
                     <th>Opciones</th>
                   </tr>
                 </thead>
