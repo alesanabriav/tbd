@@ -58,6 +58,10 @@
 
 	var _page2 = _interopRequireDefault(_page);
 
+	var _axios = __webpack_require__(213);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
 	var _store = __webpack_require__(198);
 
 	var _store2 = _interopRequireDefault(_store);
@@ -82,10 +86,14 @@
 
 	var _campaign2 = _interopRequireDefault(_campaign);
 
+	var _login = __webpack_require__(257);
+
+	var _login2 = _interopRequireDefault(_login);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//import sass
-	__webpack_require__(256);
+	__webpack_require__(258);
 
 	var appContainer = document.getElementById('app');
 
@@ -100,6 +108,24 @@
 	    )
 	  );
 	};
+
+	function checkAuth(ctx, cb) {
+	  var token = localStorage.getItem('t84-db-token');
+	  var isAuth = token ? true : false;
+
+	  if (isAuth) {
+	    _axios2.default.defaults.headers.common['x-access-token'] = token;
+	    return cb();
+	  } else {
+	    _page2.default.redirect('login');
+	  }
+	}
+
+	(0, _page2.default)('/login', function () {
+	  (0, _reactDom.render)(_react2.default.createElement(_login2.default, null), appContainer);
+	});
+
+	(0, _page2.default)('/*', checkAuth);
 
 	(0, _page2.default)('/', function () {
 	  (0, _reactDom.render)(root(_react2.default.createElement(_companies2.default, null)), appContainer);
@@ -27807,7 +27833,7 @@
 
 	var listAction = _interopRequireWildcard(_lists);
 
-	var _upload = __webpack_require__(261);
+	var _upload = __webpack_require__(256);
 
 	var _upload2 = _interopRequireDefault(_upload);
 
@@ -40619,13 +40645,133 @@
 /* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _axios = __webpack_require__(213);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var upload = _react2.default.createClass({
+		displayName: 'upload',
+		handleFile: function handleFile(e) {
+			var _this = this;
+
+			var data = new FormData();
+			data.append('file', e.currentTarget.files[0]);
+			var config = {
+				onUploadProgress: function onUploadProgress(progressEvent) {
+					var percentCompleted = Math.round(progressEvent.loaded * 100 / progressEvent.total);
+					console.log(percentCompleted);
+				}
+			};
+
+			_axios2.default.post('/api/v1/upload', data, config).then(function (res) {
+				return _this.props.onChange(res.data);
+			});
+		},
+		render: function render() {
+			return _react2.default.createElement(
+				'div',
+				null,
+				_react2.default.createElement('input', { type: 'file', onChange: this.handleFile })
+			);
+		}
+	});
+
+	exports.default = upload;
+
+/***/ },
+/* 257 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _page = __webpack_require__(196);
+
+	var _page2 = _interopRequireDefault(_page);
+
+	var _axios = __webpack_require__(213);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	var login = _react2.default.createClass({
+		displayName: 'login',
+		getInitialState: function getInitialState() {
+			return {
+				user: '',
+				password: '',
+				errors: []
+			};
+		},
+		handleChange: function handleChange(field, e) {
+			this.setState(_defineProperty({}, field, e.currentTarget.value));
+		},
+		login: function login() {
+			var _this = this;
+
+			_axios2.default.post('/login', this.state).then(function (res) {
+				console.log(res);
+				localStorage.setItem('t84-db-token', res.data.token);
+				_page2.default.redirect('/');
+			}).catch(function (err) {
+				return _this.setState({ errors: err.response.data.message });
+			});
+		},
+		render: function render() {
+			return _react2.default.createElement(
+				'div',
+				{ style: { width: '500px', margin: '30px' } },
+				_react2.default.createElement('input', { type: 'text', onChange: this.handleChange.bind(null, 'user'), placeholder: 'usuario', value: this.state.user }),
+				_react2.default.createElement('input', { type: 'password', onChange: this.handleChange.bind(null, 'password'), placeholder: 'contrase\xF1a', value: this.state.password }),
+				_react2.default.createElement(
+					'div',
+					null,
+					this.state.errors
+				),
+				_react2.default.createElement(
+					'button',
+					{ onClick: this.login },
+					'login'
+				)
+			);
+		}
+	});
+
+	exports.default = login;
+
+/***/ },
+/* 258 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(257);
+	var content = __webpack_require__(259);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(259)(content, {});
+	var update = __webpack_require__(261)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -40642,10 +40788,10 @@
 	}
 
 /***/ },
-/* 257 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(258)();
+	exports = module.exports = __webpack_require__(260)();
 	// imports
 
 
@@ -40656,7 +40802,7 @@
 
 
 /***/ },
-/* 258 */
+/* 260 */
 /***/ function(module, exports) {
 
 	/*
@@ -40712,7 +40858,7 @@
 
 
 /***/ },
-/* 259 */
+/* 261 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -40962,56 +41108,6 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
-
-/***/ },
-/* 260 */,
-/* 261 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _axios = __webpack_require__(213);
-
-	var _axios2 = _interopRequireDefault(_axios);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var upload = _react2.default.createClass({
-		displayName: 'upload',
-		handleFile: function handleFile(e) {
-			var _this = this;
-
-			var data = new FormData();
-			data.append('file', e.currentTarget.files[0]);
-			var config = {
-				onUploadProgress: function onUploadProgress(progressEvent) {
-					var percentCompleted = Math.round(progressEvent.loaded * 100 / progressEvent.total);
-					console.log(percentCompleted);
-				}
-			};
-
-			_axios2.default.post('/api/v1/upload', data, config).then(function (res) {
-				return _this.props.onChange(res.data);
-			});
-		},
-		render: function render() {
-			return _react2.default.createElement(
-				'div',
-				null,
-				_react2.default.createElement('input', { type: 'file', onChange: this.handleFile })
-			);
-		}
-	});
-
-	exports.default = upload;
 
 /***/ }
 /******/ ]);

@@ -1,6 +1,8 @@
 'use strict';
 import ctrl from './controllers';
 import multer from 'multer';
+import auth from './lib/auth';
+
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, './public/uploads/');
@@ -13,6 +15,9 @@ var storage = multer.diskStorage({
 var upload = multer({ storage });
 
 export default function routes(app) {
+
+  app.post('/login', ctrl.users.login);
+  app.use('/api/v1/*', auth);
   //companies
   app.get('/api/v1/companies', ctrl.companies.get);
   app.post('/api/v1/companies', ctrl.companies.store);
