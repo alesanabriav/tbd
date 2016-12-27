@@ -98,13 +98,13 @@ export default function(sequelize) {
     },
 
     sendCampaign(req, res) {
-      let {content, listId} = req.body;
+      let {content, listId, subject} = req.body;
       
       return Model
       .findOne({where: {id: listId}, include: [{model: Company, attributes: ['id', 'name', 'email'] }] })
       .then(list => {
         let actions = list.companies.map(company => {
-          return campaigns().sendMail(company.email, 'campaña test',  content);
+          return campaigns().sendMail(company.email, subject,  content);
         });
 
         return Promise.all(actions).then(com => res.json({response: com}));
