@@ -27098,13 +27098,14 @@
 	var initialState = {
 	    type: 'add',
 	    name: '',
-	    commercial_name: '',
+	    category: '',
 	    nit: '',
 	    email: '',
 	    city: '',
 	    address: '',
 	    phone: '',
-	    contact_name: ''
+	    advisor: '',
+	    contact: ''
 	};
 
 	exports.default = _react2.default.createClass({
@@ -27215,9 +27216,29 @@
 	                { className: 'input-container col-6' },
 	                _react2.default.createElement('input', {
 	                    type: 'text',
-	                    onChange: this.handleInputChange.bind(this, 'contact_name'),
+	                    onChange: this.handleInputChange.bind(this, 'category'),
+	                    placeholder: 'Lista',
+	                    value: this.state.category
+	                })
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'input-container col-6' },
+	                _react2.default.createElement('input', {
+	                    type: 'text',
+	                    onChange: this.handleInputChange.bind(this, 'contact'),
 	                    placeholder: 'Contacto',
-	                    value: this.state.contact_name
+	                    value: this.state.contact
+	                })
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'input-container col-6' },
+	                _react2.default.createElement('input', {
+	                    type: 'text',
+	                    onChange: this.handleInputChange.bind(this, 'advisor'),
+	                    placeholder: 'Vendedor',
+	                    value: this.state.advisor
 	                })
 	            ),
 	            _react2.default.createElement(

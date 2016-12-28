@@ -4,13 +4,14 @@ import React from 'react';
 const initialState = {
     type: 'add',
     name: '',
-    commercial_name: '',
+    category: '',
     nit: '',
     email: '',
     city: '',
     address: '',
     phone: '',
-    contact_name: ''
+    advisor: '',
+    contact: ''
 };
 
 export default React.createClass({
@@ -113,12 +114,30 @@ export default React.createClass({
             />
         </div>
 
+        <div className="input-container col-6">
+            <input 
+                type="text" 
+                onChange={this.handleInputChange.bind(this, 'category')}
+                placeholder="Lista" 
+                value={this.state.category}
+            />
+        </div>
+
 		<div className="input-container col-6">
             <input 
                 type="text" 
-                onChange={this.handleInputChange.bind(this, 'contact_name')}
+                onChange={this.handleInputChange.bind(this, 'contact')}
                 placeholder="Contacto" 
-                value={this.state.contact_name}
+                value={this.state.contact}
+            />
+        </div>
+
+        <div className="input-container col-6">
+            <input 
+                type="text" 
+                onChange={this.handleInputChange.bind(this, 'advisor')}
+                placeholder="Vendedor" 
+                value={this.state.advisor}
             />
         </div>
 
