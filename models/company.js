@@ -20,6 +20,15 @@ export default seq.define('companies', {
     },
     email: {
       type: Sequelize.STRING
+    },
+    contact: {
+      type: Sequelize.STRING
+    },
+    category: {
+      type: Sequelize.STRING
+    },
+    advisor: {
+      type: Sequelize.STRING
     }
   },
   {
