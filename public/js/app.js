@@ -41166,7 +41166,7 @@
 /* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -41176,119 +41176,124 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactRedux = __webpack_require__(172);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	exports.default = _react2.default.createClass({
-		displayName: "company",
+	var Company = _react2.default.createClass({
+		displayName: 'Company',
+		componentDidMount: function componentDidMount() {
+			this.props.dispatch(action.get(this.props.id));
+		},
 		render: function render() {
 			var company = this.props.company;
 
 
 			return _react2.default.createElement(
-				"div",
-				{ className: "col-12 viewport_container" },
+				'div',
+				{ className: 'col-12 viewport_container' },
 				_react2.default.createElement(
-					"div",
-					{ className: "card__content" },
+					'div',
+					{ className: 'card__content' },
 					_react2.default.createElement(
-						"table",
+						'table',
 						null,
 						_react2.default.createElement(
-							"thead",
+							'thead',
 							null,
 							_react2.default.createElement(
-								"tr",
+								'tr',
 								null,
 								_react2.default.createElement(
-									"th",
+									'th',
 									null,
-									"Nombre"
+									'Nombre'
 								),
 								_react2.default.createElement(
-									"th",
+									'th',
 									null,
-									"NIT"
+									'NIT'
 								),
 								_react2.default.createElement(
-									"th",
+									'th',
 									null,
-									"Ciudad"
+									'Ciudad'
 								),
 								_react2.default.createElement(
-									"th",
+									'th',
 									null,
-									"Direcci\xF3n"
+									'Direcci\xF3n'
 								),
 								_react2.default.createElement(
-									"th",
+									'th',
 									null,
-									"Tel\xE9fono"
+									'Tel\xE9fono'
 								),
 								_react2.default.createElement(
-									"th",
+									'th',
 									null,
-									"Contacto"
+									'Contacto'
 								),
 								_react2.default.createElement(
-									"th",
+									'th',
 									null,
-									"Email"
+									'Email'
 								),
 								_react2.default.createElement(
-									"th",
+									'th',
 									null,
-									"Asesor"
+									'Asesor'
 								)
 							)
 						),
 						_react2.default.createElement(
-							"tbody",
+							'tbody',
 							null,
 							_react2.default.createElement(
-								"tr",
+								'tr',
 								null,
 								_react2.default.createElement(
-									"td",
+									'td',
 									null,
 									company.name
 								),
 								_react2.default.createElement(
-									"td",
+									'td',
 									null,
 									company.nit
 								),
 								_react2.default.createElement(
-									"td",
+									'td',
 									null,
 									company.city
 								),
 								_react2.default.createElement(
-									"td",
+									'td',
 									null,
 									company.address
 								),
 								_react2.default.createElement(
-									"td",
+									'td',
 									null,
 									company.phone
 								),
 								_react2.default.createElement(
-									"td",
+									'td',
 									null,
 									company.contact
 								),
 								_react2.default.createElement(
-									"td",
+									'td',
 									null,
 									company.email
 								),
 								_react2.default.createElement(
-									"td",
+									'td',
 									null,
 									company.phone
 								),
 								_react2.default.createElement(
-									"td",
+									'td',
 									null,
 									company.advisor
 								)
@@ -41299,6 +41304,10 @@
 			);
 		}
 	});
+
+	exports.default = (0, _reactRedux.connect)(function (store) {
+		return store.companies;
+	})(Company);
 
 /***/ }
 /******/ ]);

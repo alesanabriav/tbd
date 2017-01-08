@@ -21,6 +21,7 @@ export default function routes(app) {
   //companies
   app.get('/api/v1/companies', ctrl.companies.get);
   app.post('/api/v1/companies', ctrl.companies.store);
+  app.get('/api/v1/companies/:id', ctrl.companies.getOne);
   app.put('/api/v1/companies/:id', ctrl.companies.update);
   app.delete('/api/v1/companies', ctrl.companies.destroy);
 

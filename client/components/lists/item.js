@@ -30,7 +30,7 @@ export default React.createClass({
 
   see() {
    let id = this.props.item.id;
-  page(`/lists/${id}/companies`);
+    page(`/lists/${id}/companies`);
   },
 
   render() {

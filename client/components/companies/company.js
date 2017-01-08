@@ -1,6 +1,10 @@
 import React from 'react';
+import {connect} from 'react-redux';
 
-export default React.createClass({
+const Company = React.createClass({
+	componentDidMount() {
+		this.props.dispatch(action.get(this.props.id));
+	},
 
 	render() {
 		const {company} = this.props;
@@ -40,3 +44,8 @@ export default React.createClass({
 		)
 	}
 });
+
+
+export default connect((store) => {
+  return store.companies;
+})(Company);
