@@ -1,5 +1,6 @@
 'use strict'; 
 import React from 'react';
+import page from 'page.js';
 
 export default React.createClass({
   getInitialState() {
@@ -30,7 +31,8 @@ export default React.createClass({
     this.props.onAddToList(this.props.company.id);
   },
 
-  see() {
+  see(e) {
+
    let id = this.props.company.id;
     page(`/companies/${id}`);
   },

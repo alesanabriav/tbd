@@ -27049,6 +27049,10 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _page = __webpack_require__(196);
+
+	var _page2 = _interopRequireDefault(_page);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createClass({
@@ -27075,9 +27079,10 @@
 	  add: function add(e) {
 	    this.props.onAddToList(this.props.company.id);
 	  },
-	  see: function see() {
+	  see: function see(e) {
+
 	    var id = this.props.company.id;
-	    page('/companies/' + id);
+	    (0, _page2.default)('/companies/' + id);
 	  },
 	  render: function render() {
 	    var _props$company = this.props.company;
