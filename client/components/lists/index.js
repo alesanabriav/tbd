@@ -31,7 +31,7 @@ const lists = React.createClass({
 
 	render() {
 		const {items} = this.props;
-		let listsNodes = items.map( item => <Item item={item} />);
+		let listsNodes = items.map( item => <Item item={item} remove={this.remove} />);
 
 		return (
 			<div className="col-12 viewport_container">

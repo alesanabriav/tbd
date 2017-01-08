@@ -27412,10 +27412,12 @@
 			this.props.dispatch(action.remove(id));
 		},
 		render: function render() {
+			var _this = this;
+
 			var items = this.props.items;
 
 			var listsNodes = items.map(function (item) {
-				return _react2.default.createElement(_item2.default, { item: item });
+				return _react2.default.createElement(_item2.default, { item: item, remove: _this.remove });
 			});
 
 			return _react2.default.createElement(
