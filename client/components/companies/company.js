@@ -23,9 +23,9 @@ const Company = React.createClass({
 								<th>Ciudad</th>
 								<th>Dirección</th>
 								<th>Teléfono</th>
-								<th>Contacto</th>
 								<th>Email</th>
 								<th>Asesor</th>
+								<th>Contacto</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -34,10 +34,9 @@ const Company = React.createClass({
 							<td>{company.city}</td>
 							<td>{company.address}</td>
 							<td>{company.phone}</td>
-							<td>{company.contact}</td>
 							<td>{company.email}</td>
-							<td>{company.phone}</td>
 							<td>{company.advisor}</td>
+							<td>{company.contact}</td>
 							</tr>
 						</tbody>
 					</table>

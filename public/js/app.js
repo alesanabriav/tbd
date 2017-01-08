@@ -41273,17 +41273,17 @@
 								_react2.default.createElement(
 									'th',
 									null,
-									'Contacto'
-								),
-								_react2.default.createElement(
-									'th',
-									null,
 									'Email'
 								),
 								_react2.default.createElement(
 									'th',
 									null,
 									'Asesor'
+								),
+								_react2.default.createElement(
+									'th',
+									null,
+									'Contacto'
 								)
 							)
 						),
@@ -41316,22 +41316,17 @@
 								_react2.default.createElement(
 									'td',
 									null,
-									company.contact
-								),
-								_react2.default.createElement(
-									'td',
-									null,
 									company.email
 								),
 								_react2.default.createElement(
 									'td',
 									null,
-									company.phone
+									company.advisor
 								),
 								_react2.default.createElement(
 									'td',
 									null,
-									company.advisor
+									company.contact
 								)
 							)
 						)
