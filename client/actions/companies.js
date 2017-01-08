@@ -67,7 +67,6 @@ export function remove(id) {
       dispatch({type: `${TYPE}_REMOVE`, payload: id})
     })
   }
-  
 }
 
 export function addToList(id) {

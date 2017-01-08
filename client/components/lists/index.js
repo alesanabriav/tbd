@@ -25,6 +25,10 @@ const lists = React.createClass({
 		this.setState({showForm: !this.state.showForm});
 	},
 
+	remove(id) {
+    this.props.dispatch(action.remove(id));
+  },
+
 	render() {
 		const {items} = this.props;
 		let listsNodes = items.map( item => <Item item={item} />);

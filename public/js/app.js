@@ -26915,6 +26915,7 @@
 	exports.get = get;
 	exports.fetch = fetch;
 	exports.store = store;
+	exports.remove = remove;
 	exports.addCompanies = addCompanies;
 	exports.removeCompanies = removeCompanies;
 	exports.sendCampaign = sendCampaign;
@@ -26958,6 +26959,14 @@
 	      return dispatch({ type: TYPE + '_ADD', payload: res.data });
 	    }).catch(function (err) {
 	      return dispatch({ type: TYPE + '_FAIL', payload: err });
+	    });
+	  };
+	}
+
+	function remove(id) {
+	  return function (dispatch) {
+	    _axios2.default.delete(endpoint, { data: { id: id } }).then(function (res) {
+	      dispatch({ type: TYPE + '_REMOVE', payload: id });
 	    });
 	  };
 	}
@@ -27398,6 +27407,9 @@
 		},
 		toggleForm: function toggleForm() {
 			this.setState({ showForm: !this.state.showForm });
+		},
+		remove: function remove(id) {
+			this.props.dispatch(action.remove(id));
 		},
 		render: function render() {
 			var items = this.props.items;

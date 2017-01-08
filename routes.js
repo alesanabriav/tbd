@@ -29,6 +29,7 @@ export default function routes(app) {
   app.post('/api/v1/lists', ctrl.lists.store);
   app.put('/api/v1/lists/:id', ctrl.lists.update);
   app.get('/api/v1/lists/:id', ctrl.lists.getOne);
+  app.delete('/api/v1/lists', ctrl.lists.destroy);
   app.delete('/api/v1/lists/:id/companies', ctrl.lists.removeCompanies);
   app.post('/api/v1/lists/:id/companies', ctrl.lists.addCompanies);
   app.post('/api/v1/lists/sendcampaign', ctrl.lists.sendCampaign);

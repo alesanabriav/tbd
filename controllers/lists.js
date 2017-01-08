@@ -51,6 +51,7 @@ export default function(sequelize) {
 
     destroy(req, res) {
       let id = req.body.id;
+      
       Model
       .findOne({where: {id: id}})
       .then(mod => {

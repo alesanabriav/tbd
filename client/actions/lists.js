@@ -29,6 +29,16 @@ export function store(list = {}) {
   }
 }
 
+export function remove(id) {
+  return function(dispatch) {
+    request
+    .delete(endpoint,  {data: {id}})
+    .then(res => {
+      dispatch({type: `${TYPE}_REMOVE`, payload: id})
+    })
+  }
+}
+
 export function addCompanies(list, companies) {
   return dispatch => {
     return request
