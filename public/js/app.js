@@ -26314,24 +26314,25 @@
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+	var _initiState;
+
 	exports.default = reducer;
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 	var TYPE = 'COMPANIES';
 
-	var initiState = {
+	var initiState = (_initiState = {
 	  items: [],
 	  company: {},
 	  list: null,
-	  ids: [],
-	  query: {
-	    offset: 0,
-	    nameLike: null
-	  },
-	  fetching: false,
-	  fetched: false
-	};
+	  ids: []
+	}, _defineProperty(_initiState, 'company', {}), _defineProperty(_initiState, 'query', {
+	  offset: 0,
+	  nameLike: null
+	}), _defineProperty(_initiState, 'fetching', false), _defineProperty(_initiState, 'fetched', false), _initiState);
 
 	function reducer() {
 	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initiState;
@@ -26340,6 +26341,10 @@
 	  switch (action.type) {
 	    case TYPE + '_FETCH':
 	      return _extends({}, state, { fetching: true });
+	      break;
+
+	    case TYPE + '_SET_COMPANY':
+	      return _extends({}, state, { company: action.payload });
 	      break;
 
 	    case TYPE + '_FULFILLED':
@@ -26821,6 +26826,7 @@
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	exports.fetch = fetch;
+	exports.fetchOne = fetchOne;
 	exports.paginate = paginate;
 	exports.search = search;
 	exports.add = add;
@@ -26855,6 +26861,16 @@
 	      return dispatch(fullfiledCompanies(res.data));
 	    }).catch(function (err) {
 	      return dispatch(failCompanies(err));
+	    });
+	  };
+	}
+
+	function fetchOne(id) {
+	  return function (dispatch) {
+	    return _axios2.default.get(endpoint + '/' + id).then(function (res) {
+	      return dispatch({ type: TYPE + '_SET_COMPANY', data: res.data });
+	    }).catch(function (res) {
+	      return dispatch({ type: TYPE + '_FAIL', data: res.data });
 	    });
 	  };
 	}
@@ -41178,12 +41194,18 @@
 
 	var _reactRedux = __webpack_require__(172);
 
+	var _companies = __webpack_require__(237);
+
+	var action = _interopRequireWildcard(_companies);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Company = _react2.default.createClass({
 		displayName: 'Company',
 		componentDidMount: function componentDidMount() {
-			this.props.dispatch(action.get(this.props.id));
+			this.props.dispatch(action.fetchOne(this.props.id));
 		},
 		render: function render() {
 			var company = this.props.company;

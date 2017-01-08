@@ -1,9 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import * as action from 'actions/companies';
 
 const Company = React.createClass({
 	componentDidMount() {
-		this.props.dispatch(action.get(this.props.id));
+		this.props.dispatch(action.fetchOne(this.props.id));
 	},
 
 	render() {

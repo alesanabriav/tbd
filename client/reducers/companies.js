@@ -6,6 +6,7 @@ const initiState = {
   company: {},
   list: null,
   ids: [],
+  company: {},
   query: {
     offset: 0,
     nameLike: null
@@ -18,6 +19,10 @@ export default function reducer(state = initiState, action) {
   switch(action.type) {
     case `${TYPE}_FETCH`:
       return {...state, fetching: true};
+    break;
+
+    case `${TYPE}_SET_COMPANY`:
+      return {...state, company: action.payload};
     break;
 
     case `${TYPE}_FULFILLED`:
