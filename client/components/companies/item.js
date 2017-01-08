@@ -30,6 +30,11 @@ export default React.createClass({
     this.props.onAddToList(this.props.company.id);
   },
 
+  see() {
+   let id = this.props.company.id;
+    page(`/companies/${id}`);
+  },
+
   render() {
     const {id, name, email, phone} = this.props.company;
     return (
@@ -37,6 +42,7 @@ export default React.createClass({
         <td><input type="checkbox" onChange={this.add} /></td>
         <td>{name}</td>
         <td>
+          <button onClick={this.see}>Ver</button>
           <button onClick={this.edit}>Editar</button>
           <button onClick={this.showRemove} className={this.state.showRemove ? 'hidden' : ''}>Eliminar</button>
           <button onClick={this.remove} className={this.state.showRemove ? '' : 'hidden'}>Seguro?</button>

@@ -27075,6 +27075,10 @@
 	  add: function add(e) {
 	    this.props.onAddToList(this.props.company.id);
 	  },
+	  see: function see() {
+	    var id = this.props.company.id;
+	    page('/companies/' + id);
+	  },
 	  render: function render() {
 	    var _props$company = this.props.company;
 	    var id = _props$company.id;
@@ -27098,6 +27102,11 @@
 	      _react2.default.createElement(
 	        'td',
 	        null,
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.see },
+	          'Ver'
+	        ),
 	        _react2.default.createElement(
 	          'button',
 	          { onClick: this.edit },
