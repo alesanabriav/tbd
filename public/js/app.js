@@ -26868,9 +26868,9 @@
 	function fetchOne(id) {
 	  return function (dispatch) {
 	    return _axios2.default.get(endpoint + '/' + id).then(function (res) {
-	      return dispatch({ type: TYPE + '_SET_COMPANY', data: res.data });
+	      return dispatch({ type: TYPE + '_SET_COMPANY', payload: res.data });
 	    }).catch(function (err) {
-	      return dispatch({ type: TYPE + '_FAIL', data: res.data });
+	      return dispatch({ type: TYPE + '_FAIL', payload: res.data });
 	    });
 	  };
 	}
@@ -41208,7 +41208,8 @@
 			this.props.dispatch(action.fetchOne(this.props.id));
 		},
 		render: function render() {
-			// const {company} = this.props;
+			var company = this.props.company;
+
 			console.log(this.props);
 			return _react2.default.createElement(
 				'div',
