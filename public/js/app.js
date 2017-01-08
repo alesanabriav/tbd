@@ -41210,10 +41210,20 @@
 		render: function render() {
 			var company = this.props.company;
 
-			console.log(this.props);
+
 			return _react2.default.createElement(
 				'div',
 				{ className: 'col-12 viewport_container' },
+				_react2.default.createElement(
+					'div',
+					{ className: 'card__header' },
+					_react2.default.createElement(
+						'h3',
+						{ className: 'pull-left' },
+						'Empresa: ',
+						company.name
+					)
+				),
 				_react2.default.createElement(
 					'div',
 					{ className: 'card__content' },
@@ -41226,11 +41236,6 @@
 							_react2.default.createElement(
 								'tr',
 								null,
-								_react2.default.createElement(
-									'th',
-									null,
-									'Nombre'
-								),
 								_react2.default.createElement(
 									'th',
 									null,
@@ -41274,11 +41279,6 @@
 							_react2.default.createElement(
 								'tr',
 								null,
-								_react2.default.createElement(
-									'td',
-									null,
-									company.name
-								),
 								_react2.default.createElement(
 									'td',
 									null,

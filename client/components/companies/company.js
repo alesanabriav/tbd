@@ -9,14 +9,16 @@ const Company = React.createClass({
 
 	render() {
 		const {company} = this.props;
-		console.log(this.props);
+
 		return (
 			<div className="col-12 viewport_container">
+				<div className="card__header">
+            <h3 className="pull-left">Empresa: {company.name}</h3>
+        </div>
 				<div className="card__content">
 					<table>
 						<thead>
 							<tr>
-								<th>Nombre</th>
 								<th>NIT</th>
 								<th>Ciudad</th>
 								<th>Dirección</th>
@@ -28,7 +30,6 @@ const Company = React.createClass({
 						</thead>
 						<tbody>
 							<tr>
-							<td>{company.name}</td>
 							<td>{company.nit}</td>
 							<td>{company.city}</td>
 							<td>{company.address}</td>
