@@ -26,7 +26,9 @@ export default function(sequelize) {
       .then(companies => res.json(companies));
     },
 
-    getOne() {
+    getOne(req, res) {
+      let id = req.params.id;
+
        Model
       .findOne({where: {id: id}})
       .then(company => res.json(company))
