@@ -26430,7 +26430,9 @@
 	var initiState = {
 	  items: [],
 	  errors: [],
-	  list: {},
+	  list: {
+	    companies: []
+	  },
 	  query: {
 	    offset: 0,
 	    nameLike: null
@@ -26470,6 +26472,17 @@
 	        items: state.items.filter(function (item) {
 	          return item.id != action.payload;
 	        })
+	      });
+	      break;
+
+	    case TYPE + '_REMOVE_COMPANIES':
+
+	      var companies = state.list.companies.filter(function (company) {
+	        return !action.payload[company.id];
+	      });
+	      console.log(companies);
+	      return _extends({}, state, {
+	        list: _extends({}, state.list, { companies: companies })
 	      });
 	      break;
 
@@ -27018,7 +27031,7 @@
 
 	  return function (dispatch) {
 	    return _axios2.default.delete(endpoint + '/' + listId + '/companies', { params: companies }).then(function (res) {
-	      return dispatch({ type: TYPE + '_REMOVE_COMPANIES', payload: res.data });
+	      return dispatch({ type: TYPE + '_REMOVE_COMPANIES', payload: companies });
 	    }).catch(function (err) {
 	      return dispatch({ type: TYPE + '_FAIL', payload: err });
 	    });

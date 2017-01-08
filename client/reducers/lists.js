@@ -4,7 +4,9 @@ const TYPE = 'LISTS';
 const initiState = {
   items: [],
   errors: [],
-  list: {},
+  list: {
+    companies: []
+  },
   query: {
     offset: 0,
     nameLike: null
@@ -42,6 +44,16 @@ export default function reducer(state = initiState, action) {
       return {
         ...state,
         items: state.items.filter(item => item.id != action.payload)
+      };
+    break;
+
+    case `${TYPE}_REMOVE_COMPANIES`:
+    
+      let companies = state.list.companies.filter(company => !action.payload[company.id] );
+      console.log(companies);
+      return {
+        ...state,
+        list: {...state.list, companies} 
       };
     break;
 

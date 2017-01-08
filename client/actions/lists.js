@@ -52,7 +52,7 @@ export function removeCompanies(listId, companies = []) {
   return dispatch => {
     return request
     .delete(`${endpoint}/${listId}/companies`, {params: companies})
-    .then(res => dispatch({type: `${TYPE}_REMOVE_COMPANIES`, payload: res.data}))
+    .then(res => dispatch({type: `${TYPE}_REMOVE_COMPANIES`, payload: companies}))
     .catch(err => dispatch( { type: `${TYPE}_FAIL`, payload: err}) );
   }
 }
