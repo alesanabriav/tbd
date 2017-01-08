@@ -3,12 +3,13 @@ import {connect} from 'react-redux';
 import * as action from 'actions/companies';
 
 const Company = React.createClass({
-	componentDidMount() {
+	componentWillMount() {
 		this.props.dispatch(action.fetchOne(this.props.id));
 	},
 
 	render() {
 		const {company} = this.props;
+
 
 		return (
 			<div className="col-12 viewport_container">

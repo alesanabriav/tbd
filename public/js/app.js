@@ -41204,7 +41204,7 @@
 
 	var Company = _react2.default.createClass({
 		displayName: 'Company',
-		componentDidMount: function componentDidMount() {
+		componentWillMount: function componentWillMount() {
 			this.props.dispatch(action.fetchOne(this.props.id));
 		},
 		render: function render() {
