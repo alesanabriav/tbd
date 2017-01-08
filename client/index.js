@@ -7,6 +7,7 @@ import axios from 'axios';
 import store from './store';
 import App from './components/app';
 import Companies from './components/companies';
+import Company from './components/companies/company';
 import Lists from './components/lists';
 import ListCompanies from './components/lists/companies';
 import Campaign from './components/campaign';
@@ -52,6 +53,10 @@ page('/', () => {
 
 page('/companies', () => {
   render( root(<Companies />) , appContainer);
+});
+
+page('/companies/:id', (ctx) => {
+  render( root(<Company id={ctx.params.id}  />) , appContainer);
 });
 
 page('/lists', () => {

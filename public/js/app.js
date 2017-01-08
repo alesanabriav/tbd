@@ -74,6 +74,10 @@
 
 	var _companies2 = _interopRequireDefault(_companies);
 
+	var _company = __webpack_require__(262);
+
+	var _company2 = _interopRequireDefault(_company);
+
 	var _lists = __webpack_require__(243);
 
 	var _lists2 = _interopRequireDefault(_lists);
@@ -133,6 +137,10 @@
 
 	(0, _page2.default)('/companies', function () {
 	  (0, _reactDom.render)(root(_react2.default.createElement(_companies2.default, null)), appContainer);
+	});
+
+	(0, _page2.default)('/companies/:id', function (ctx) {
+	  (0, _reactDom.render)(root(_react2.default.createElement(_company2.default, { id: ctx.params.id })), appContainer);
 	});
 
 	(0, _page2.default)('/lists', function () {
@@ -41153,6 +41161,144 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
+
+/***/ },
+/* 262 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _react2.default.createClass({
+		displayName: "company",
+		render: function render() {
+			var company = this.props.company;
+
+
+			return _react2.default.createElement(
+				"div",
+				{ className: "col-12 viewport_container" },
+				_react2.default.createElement(
+					"div",
+					{ className: "card__content" },
+					_react2.default.createElement(
+						"table",
+						null,
+						_react2.default.createElement(
+							"thead",
+							null,
+							_react2.default.createElement(
+								"tr",
+								null,
+								_react2.default.createElement(
+									"th",
+									null,
+									"Nombre"
+								),
+								_react2.default.createElement(
+									"th",
+									null,
+									"NIT"
+								),
+								_react2.default.createElement(
+									"th",
+									null,
+									"Ciudad"
+								),
+								_react2.default.createElement(
+									"th",
+									null,
+									"Direcci\xF3n"
+								),
+								_react2.default.createElement(
+									"th",
+									null,
+									"Tel\xE9fono"
+								),
+								_react2.default.createElement(
+									"th",
+									null,
+									"Contacto"
+								),
+								_react2.default.createElement(
+									"th",
+									null,
+									"Email"
+								),
+								_react2.default.createElement(
+									"th",
+									null,
+									"Asesor"
+								)
+							)
+						),
+						_react2.default.createElement(
+							"tbody",
+							null,
+							_react2.default.createElement(
+								"tr",
+								null,
+								_react2.default.createElement(
+									"td",
+									null,
+									company.name
+								),
+								_react2.default.createElement(
+									"td",
+									null,
+									company.nit
+								),
+								_react2.default.createElement(
+									"td",
+									null,
+									company.city
+								),
+								_react2.default.createElement(
+									"td",
+									null,
+									company.address
+								),
+								_react2.default.createElement(
+									"td",
+									null,
+									company.phone
+								),
+								_react2.default.createElement(
+									"td",
+									null,
+									company.contact
+								),
+								_react2.default.createElement(
+									"td",
+									null,
+									company.email
+								),
+								_react2.default.createElement(
+									"td",
+									null,
+									company.phone
+								),
+								_react2.default.createElement(
+									"td",
+									null,
+									company.advisor
+								)
+							)
+						)
+					)
+				)
+			);
+		}
+	});
 
 /***/ }
 /******/ ]);
