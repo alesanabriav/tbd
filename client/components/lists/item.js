@@ -20,7 +20,8 @@ export default React.createClass({
 
   remove(e) {
     if(e) e.preventDefault();
-    this.props.remove(this.props.company.id);
+    let id = this.props.item.id;
+    this.props.remove(id);
   },
 
   showRemove() {
@@ -34,6 +35,7 @@ export default React.createClass({
 
   render() {
     const {id, title, companies} = this.props.item;
+
     return (
       <tr>
         <td>{title}</td>
