@@ -26478,7 +26478,7 @@
 	    case TYPE + '_REMOVE_COMPANIES':
 
 	      var companies = state.list.companies.filter(function (company) {
-	        return action.payload[company.id];
+	        return action.payload.indexOf(company.id) == -1;
 	      });
 	      console.log(companies);
 	      return _extends({}, state, {

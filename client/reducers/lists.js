@@ -49,7 +49,7 @@ export default function reducer(state = initiState, action) {
 
     case `${TYPE}_REMOVE_COMPANIES`:
     
-      let companies = state.list.companies.filter(company => action.payload[company.id] );
+      let companies = state.list.companies.filter(company => action.payload.indexOf(company.id) == -1 );
       console.log(companies);
       return {
         ...state,
