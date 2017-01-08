@@ -8,9 +8,8 @@ const Company = React.createClass({
 	},
 
 	render() {
-		const {company} = this.props;
-
-
+		// const {company} = this.props;
+		console.log(this.props);
 		return (
 			<div className="col-12 viewport_container">
 				<div className="card__content">

@@ -26869,7 +26869,7 @@
 	  return function (dispatch) {
 	    return _axios2.default.get(endpoint + '/' + id).then(function (res) {
 	      return dispatch({ type: TYPE + '_SET_COMPANY', data: res.data });
-	    }).catch(function (res) {
+	    }).catch(function (err) {
 	      return dispatch({ type: TYPE + '_FAIL', data: res.data });
 	    });
 	  };
@@ -41208,9 +41208,8 @@
 			this.props.dispatch(action.fetchOne(this.props.id));
 		},
 		render: function render() {
-			var company = this.props.company;
-
-
+			// const {company} = this.props;
+			console.log(this.props);
 			return _react2.default.createElement(
 				'div',
 				{ className: 'col-12 viewport_container' },

@@ -26,7 +26,7 @@ export function fetchOne(id) {
     return request
     .get(`${endpoint}/${id}`)
     .then(res => dispatch({type: `${TYPE}_SET_COMPANY`, data: res.data}))
-    .catch(res => dispatch({type: `${TYPE}_FAIL`, data: res.data}))
+    .catch(err => dispatch({type: `${TYPE}_FAIL`, data: res.data}))
   }
 }
 
