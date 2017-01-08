@@ -26452,6 +26452,14 @@
 	      });
 	      break;
 
+	    case TYPE + '_REMOVE':
+	      return _extends({}, state, {
+	        items: state.items.filter(function (item) {
+	          return item.id != action.payload;
+	        })
+	      });
+	      break;
+
 	    case TYPE + '_FAIL':
 	      return _extends({}, state, {
 	        fetching: false,

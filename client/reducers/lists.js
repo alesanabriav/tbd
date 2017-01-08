@@ -38,6 +38,13 @@ export default function reducer(state = initiState, action) {
       };
     break;
 
+    case `${TYPE}_REMOVE`:
+      return {
+        ...state,
+        items: state.items.filter(item => item.id != action.payload)
+      };
+    break;
+
     case `${TYPE}_FAIL`:
       return {
         ...state, 
