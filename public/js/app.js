@@ -74,30 +74,30 @@
 
 	var _companies2 = _interopRequireDefault(_companies);
 
-	var _company = __webpack_require__(262);
+	var _company = __webpack_require__(243);
 
 	var _company2 = _interopRequireDefault(_company);
 
-	var _lists = __webpack_require__(243);
+	var _lists = __webpack_require__(244);
 
 	var _lists2 = _interopRequireDefault(_lists);
 
-	var _companies3 = __webpack_require__(246);
+	var _companies3 = __webpack_require__(247);
 
 	var _companies4 = _interopRequireDefault(_companies3);
 
-	var _campaign = __webpack_require__(248);
+	var _campaign = __webpack_require__(249);
 
 	var _campaign2 = _interopRequireDefault(_campaign);
 
-	var _login = __webpack_require__(257);
+	var _login = __webpack_require__(258);
 
 	var _login2 = _interopRequireDefault(_login);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	//import sass
-	__webpack_require__(258);
+	__webpack_require__(259);
 
 	var appContainer = document.getElementById('app');
 
@@ -27429,6 +27429,154 @@
 
 	var _reactRedux = __webpack_require__(172);
 
+	var _companies = __webpack_require__(237);
+
+	var action = _interopRequireWildcard(_companies);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Company = _react2.default.createClass({
+		displayName: 'Company',
+		componentWillMount: function componentWillMount() {
+			this.props.dispatch(action.fetchOne(this.props.id));
+		},
+		render: function render() {
+			var company = this.props.company;
+
+
+			return _react2.default.createElement(
+				'div',
+				{ className: 'col-12 viewport_container' },
+				_react2.default.createElement(
+					'div',
+					{ className: 'card__header' },
+					_react2.default.createElement(
+						'h3',
+						{ className: 'pull-left' },
+						'Empresa: ',
+						company.name
+					)
+				),
+				_react2.default.createElement(
+					'div',
+					{ className: 'card__content' },
+					_react2.default.createElement(
+						'table',
+						null,
+						_react2.default.createElement(
+							'thead',
+							null,
+							_react2.default.createElement(
+								'tr',
+								null,
+								_react2.default.createElement(
+									'th',
+									null,
+									'NIT'
+								),
+								_react2.default.createElement(
+									'th',
+									null,
+									'Ciudad'
+								),
+								_react2.default.createElement(
+									'th',
+									null,
+									'Direcci\xF3n'
+								),
+								_react2.default.createElement(
+									'th',
+									null,
+									'Tel\xE9fono'
+								),
+								_react2.default.createElement(
+									'th',
+									null,
+									'Email'
+								),
+								_react2.default.createElement(
+									'th',
+									null,
+									'Asesor'
+								),
+								_react2.default.createElement(
+									'th',
+									null,
+									'Contacto'
+								)
+							)
+						),
+						_react2.default.createElement(
+							'tbody',
+							null,
+							_react2.default.createElement(
+								'tr',
+								null,
+								_react2.default.createElement(
+									'td',
+									null,
+									company.nit
+								),
+								_react2.default.createElement(
+									'td',
+									null,
+									company.city
+								),
+								_react2.default.createElement(
+									'td',
+									null,
+									company.address
+								),
+								_react2.default.createElement(
+									'td',
+									null,
+									company.phone
+								),
+								_react2.default.createElement(
+									'td',
+									null,
+									company.email
+								),
+								_react2.default.createElement(
+									'td',
+									null,
+									company.advisor
+								),
+								_react2.default.createElement(
+									'td',
+									null,
+									company.contact
+								)
+							)
+						)
+					)
+				)
+			);
+		}
+	});
+
+	exports.default = (0, _reactRedux.connect)(function (store) {
+		return store.companies;
+	})(Company);
+
+/***/ },
+/* 244 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(172);
+
 	var _lists = __webpack_require__(238);
 
 	var action = _interopRequireWildcard(_lists);
@@ -27437,11 +27585,11 @@
 
 	var _paginate2 = _interopRequireDefault(_paginate);
 
-	var _item = __webpack_require__(244);
+	var _item = __webpack_require__(245);
 
 	var _item2 = _interopRequireDefault(_item);
 
-	var _form = __webpack_require__(245);
+	var _form = __webpack_require__(246);
 
 	var _form2 = _interopRequireDefault(_form);
 
@@ -27555,7 +27703,7 @@
 	})(lists);
 
 /***/ },
-/* 244 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27649,7 +27797,7 @@
 	});
 
 /***/ },
-/* 245 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27720,7 +27868,7 @@
 	});
 
 /***/ },
-/* 246 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27739,7 +27887,7 @@
 
 	var action = _interopRequireWildcard(_lists);
 
-	var _company = __webpack_require__(247);
+	var _company = __webpack_require__(248);
 
 	var _company2 = _interopRequireDefault(_company);
 
@@ -27852,7 +28000,7 @@
 	})(lists);
 
 /***/ },
-/* 247 */
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -27906,7 +28054,7 @@
 	});
 
 /***/ },
-/* 248 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -27921,7 +28069,7 @@
 
 	var _reactRedux = __webpack_require__(172);
 
-	var _editor = __webpack_require__(249);
+	var _editor = __webpack_require__(250);
 
 	var _editor2 = _interopRequireDefault(_editor);
 
@@ -27929,7 +28077,7 @@
 
 	var listAction = _interopRequireWildcard(_lists);
 
-	var _upload = __webpack_require__(256);
+	var _upload = __webpack_require__(257);
 
 	var _upload2 = _interopRequireDefault(_upload);
 
@@ -28039,7 +28187,7 @@
 	})(campaign);
 
 /***/ },
-/* 249 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -28052,11 +28200,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _quill = __webpack_require__(250);
+	var _quill = __webpack_require__(251);
 
 	var _quill2 = _interopRequireDefault(_quill);
 
-	var _uid = __webpack_require__(255);
+	var _uid = __webpack_require__(256);
 
 	var _uid2 = _interopRequireDefault(_uid);
 
@@ -28140,7 +28288,7 @@
 	});
 
 /***/ },
-/* 250 */
+/* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer) {/*!
@@ -38695,10 +38843,10 @@
 	/******/ ])
 	});
 	;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(251).Buffer))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(252).Buffer))
 
 /***/ },
-/* 251 */
+/* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(Buffer, global) {/*!
@@ -38711,9 +38859,9 @@
 
 	'use strict'
 
-	var base64 = __webpack_require__(252)
-	var ieee754 = __webpack_require__(253)
-	var isArray = __webpack_require__(254)
+	var base64 = __webpack_require__(253)
+	var ieee754 = __webpack_require__(254)
+	var isArray = __webpack_require__(255)
 
 	exports.Buffer = Buffer
 	exports.SlowBuffer = SlowBuffer
@@ -40491,10 +40639,10 @@
 	  return val !== val // eslint-disable-line no-self-compare
 	}
 
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(251).Buffer, (function() { return this; }())))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(252).Buffer, (function() { return this; }())))
 
 /***/ },
-/* 252 */
+/* 253 */
 /***/ function(module, exports) {
 
 	'use strict'
@@ -40614,7 +40762,7 @@
 
 
 /***/ },
-/* 253 */
+/* 254 */
 /***/ function(module, exports) {
 
 	exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -40704,7 +40852,7 @@
 
 
 /***/ },
-/* 254 */
+/* 255 */
 /***/ function(module, exports) {
 
 	var toString = {}.toString;
@@ -40715,7 +40863,7 @@
 
 
 /***/ },
-/* 255 */
+/* 256 */
 /***/ function(module, exports) {
 
 	/**
@@ -40738,7 +40886,7 @@
 
 
 /***/ },
-/* 256 */
+/* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40787,7 +40935,7 @@
 	exports.default = upload;
 
 /***/ },
-/* 257 */
+/* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -40858,16 +41006,16 @@
 	exports.default = login;
 
 /***/ },
-/* 258 */
+/* 259 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(259);
+	var content = __webpack_require__(260);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(261)(content, {});
+	var update = __webpack_require__(262)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -40884,10 +41032,10 @@
 	}
 
 /***/ },
-/* 259 */
+/* 260 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(260)();
+	exports = module.exports = __webpack_require__(261)();
 	// imports
 
 
@@ -40898,7 +41046,7 @@
 
 
 /***/ },
-/* 260 */
+/* 261 */
 /***/ function(module, exports) {
 
 	/*
@@ -40954,7 +41102,7 @@
 
 
 /***/ },
-/* 261 */
+/* 262 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -41204,154 +41352,6 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
-
-/***/ },
-/* 262 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _reactRedux = __webpack_require__(172);
-
-	var _companies = __webpack_require__(237);
-
-	var action = _interopRequireWildcard(_companies);
-
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var Company = _react2.default.createClass({
-		displayName: 'Company',
-		componentWillMount: function componentWillMount() {
-			this.props.dispatch(action.fetchOne(this.props.id));
-		},
-		render: function render() {
-			var company = this.props.company;
-
-
-			return _react2.default.createElement(
-				'div',
-				{ className: 'col-12 viewport_container' },
-				_react2.default.createElement(
-					'div',
-					{ className: 'card__header' },
-					_react2.default.createElement(
-						'h3',
-						{ className: 'pull-left' },
-						'Empresa: ',
-						company.name
-					)
-				),
-				_react2.default.createElement(
-					'div',
-					{ className: 'card__content' },
-					_react2.default.createElement(
-						'table',
-						null,
-						_react2.default.createElement(
-							'thead',
-							null,
-							_react2.default.createElement(
-								'tr',
-								null,
-								_react2.default.createElement(
-									'th',
-									null,
-									'NIT'
-								),
-								_react2.default.createElement(
-									'th',
-									null,
-									'Ciudad'
-								),
-								_react2.default.createElement(
-									'th',
-									null,
-									'Direcci\xF3n'
-								),
-								_react2.default.createElement(
-									'th',
-									null,
-									'Tel\xE9fono'
-								),
-								_react2.default.createElement(
-									'th',
-									null,
-									'Email'
-								),
-								_react2.default.createElement(
-									'th',
-									null,
-									'Asesor'
-								),
-								_react2.default.createElement(
-									'th',
-									null,
-									'Contacto'
-								)
-							)
-						),
-						_react2.default.createElement(
-							'tbody',
-							null,
-							_react2.default.createElement(
-								'tr',
-								null,
-								_react2.default.createElement(
-									'td',
-									null,
-									company.nit
-								),
-								_react2.default.createElement(
-									'td',
-									null,
-									company.city
-								),
-								_react2.default.createElement(
-									'td',
-									null,
-									company.address
-								),
-								_react2.default.createElement(
-									'td',
-									null,
-									company.phone
-								),
-								_react2.default.createElement(
-									'td',
-									null,
-									company.email
-								),
-								_react2.default.createElement(
-									'td',
-									null,
-									company.advisor
-								),
-								_react2.default.createElement(
-									'td',
-									null,
-									company.contact
-								)
-							)
-						)
-					)
-				)
-			);
-		}
-	});
-
-	exports.default = (0, _reactRedux.connect)(function (store) {
-		return store.companies;
-	})(Company);
 
 /***/ }
 /******/ ]);
