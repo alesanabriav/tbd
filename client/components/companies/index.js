@@ -76,7 +76,7 @@ const companies =  React.createClass({
   },
 
   addAll() {
-    let ids = this.props.companies.map(company => company.id);
+    let ids = this.props.companies.items.map(company => company.id);
     ids.forEach(id => this.props.dispatch(action.addToList(id)));
   },
   

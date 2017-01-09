@@ -26715,7 +26715,7 @@
 	  addAll: function addAll() {
 	    var _this3 = this;
 
-	    var ids = this.props.companies.map(function (company) {
+	    var ids = this.props.companies.items.map(function (company) {
 	      return company.id;
 	    });
 	    ids.forEach(function (id) {
