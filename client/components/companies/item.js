@@ -31,8 +31,10 @@ export default React.createClass({
   add(e) {
     if(!this.state.added) {
       this.props.onAddToList(this.props.company.id);
+      this.setState({added: true});
     } else {
       this.props.onRemoveToList(this.props.company.id);
+      this.setState({added: false});
     }
   },
 

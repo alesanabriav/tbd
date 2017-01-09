@@ -27122,8 +27122,10 @@
 	  add: function add(e) {
 	    if (!this.state.added) {
 	      this.props.onAddToList(this.props.company.id);
+	      this.setState({ added: true });
 	    } else {
 	      this.props.onRemoveToList(this.props.company.id);
+	      this.setState({ added: false });
 	    }
 	  },
 	  see: function see(e) {
