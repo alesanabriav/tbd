@@ -74,6 +74,11 @@ const companies =  React.createClass({
       this.props.dispatch(action.cleanIds())
     });
   },
+
+  addAll() {
+    let ids = this.props.companies.map(company => company.id);
+    ids.forEach(id => this.props.dispatch(action.addToList(id)));
+  },
   
   render() {
     const {nameLink, items} = this.props.companies;
@@ -125,7 +130,7 @@ const companies =  React.createClass({
               <table>
                 <thead>
                   <tr>
-                    <th>#</th>
+                    <th># <input type="checkbox" onChange={this.addAll}  /></th>
                     <th>Razón Social</th>
                     <th>Opciones</th>
                   </tr>

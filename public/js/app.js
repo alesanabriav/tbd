@@ -26712,8 +26712,18 @@
 	      _this2.props.dispatch(action.cleanIds());
 	    });
 	  },
-	  render: function render() {
+	  addAll: function addAll() {
 	    var _this3 = this;
+
+	    var ids = this.props.companies.map(function (company) {
+	      return company.id;
+	    });
+	    ids.forEach(function (id) {
+	      return _this3.props.dispatch(action.addToList(id));
+	    });
+	  },
+	  render: function render() {
+	    var _this4 = this;
 
 	    var _props$companies2 = this.props.companies;
 	    var nameLink = _props$companies2.nameLink;
@@ -26723,9 +26733,9 @@
 	      return _react2.default.createElement(_item2.default, {
 	        key: ind,
 	        company: company,
-	        edit: _this3.edit,
-	        remove: _this3.remove,
-	        onAddToList: _this3.addToList
+	        edit: _this4.edit,
+	        remove: _this4.remove,
+	        onAddToList: _this4.addToList
 	      });
 	    });
 
@@ -26796,7 +26806,8 @@
 	                _react2.default.createElement(
 	                  'th',
 	                  null,
-	                  '#'
+	                  '# ',
+	                  _react2.default.createElement('input', { type: 'checkbox', onChange: this.addAll })
 	                ),
 	                _react2.default.createElement(
 	                  'th',
