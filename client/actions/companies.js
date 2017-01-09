@@ -48,7 +48,6 @@ export function search(query, name) {
   
   return dispatch => { 
     dispatch({type: `${TYPE}_SEARCH`, payload: query});
-    console.log('nea');
     dispatch(fetch(query));
   }
 }

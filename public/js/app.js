@@ -26908,7 +26908,6 @@
 
 	  return function (dispatch) {
 	    dispatch({ type: TYPE + '_SEARCH', payload: query });
-	    console.log('nea');
 	    dispatch(fetch(query));
 	  };
 	}
