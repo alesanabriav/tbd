@@ -13,7 +13,8 @@ const companies =  React.createClass({
     return {
       showForm: false,
       showAlert: false,
-      company: {}
+      company: {},
+      addedAll: false
     }
   },
 
@@ -81,8 +82,17 @@ const companies =  React.createClass({
 
   addAll() {
     let ids = this.props.companies.items.map(company => company.id);
-    ids.forEach(id => this.props.dispatch(action.addToList(id)));
+    
+    if(this.state.addedAll) {
+      ids.forEach(id => this.props.dispatch(action.removeToList(id)));
+    } else {
+      ids.forEach(id => this.props.dispatch(action.addToList(id)));
+    }
+
+    this.setState({addedAll: !this.state.addedAll});
+    
   },
+
   
   render() {
     const {nameLink, items, ids} = this.props.companies;
@@ -136,7 +146,9 @@ const companies =  React.createClass({
               <table>
                 <thead>
                   <tr>
-                    <th><input type="checkbox" onChange={this.addAll}  /></th>
+                    <th> 
+                      <input type="checkbox" onChange={this.addAll} /> 
+                    </th>
                     <th>Razón Social</th>
                     <th>Opciones</th>
                   </tr>

@@ -26659,7 +26659,8 @@
 	    return {
 	      showForm: false,
 	      showAlert: false,
-	      company: {}
+	      company: {},
+	      addedAll: false
 	    };
 	  },
 	  componentWillMount: function componentWillMount() {
@@ -26729,9 +26730,18 @@
 	    var ids = this.props.companies.items.map(function (company) {
 	      return company.id;
 	    });
-	    ids.forEach(function (id) {
-	      return _this3.props.dispatch(action.addToList(id));
-	    });
+
+	    if (this.state.addedAll) {
+	      ids.forEach(function (id) {
+	        return _this3.props.dispatch(action.removeToList(id));
+	      });
+	    } else {
+	      ids.forEach(function (id) {
+	        return _this3.props.dispatch(action.addToList(id));
+	      });
+	    }
+
+	    this.setState({ addedAll: !this.state.addedAll });
 	  },
 	  render: function render() {
 	    var _this4 = this;
