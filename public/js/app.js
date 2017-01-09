@@ -26287,7 +26287,7 @@
 
 	var _redux = __webpack_require__(179);
 
-	var _companies = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./companies\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _companies = __webpack_require__(232);
 
 	var _companies2 = _interopRequireDefault(_companies);
 
@@ -26303,7 +26303,124 @@
 	});
 
 /***/ },
-/* 232 */,
+/* 232 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _initiState;
+
+	exports.default = reducer;
+
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	var TYPE = 'COMPANIES';
+
+	var initiState = (_initiState = {
+	  items: [],
+	  company: {},
+	  list: null,
+	  ids: []
+	}, _defineProperty(_initiState, 'company', {}), _defineProperty(_initiState, 'query', {
+	  offset: 0,
+	  nameLike: null
+	}), _defineProperty(_initiState, 'fetching', false), _defineProperty(_initiState, 'fetched', false), _initiState);
+
+	function reducer() {
+	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initiState;
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case TYPE + '_FETCH':
+	      return _extends({}, state, { fetching: true });
+	      break;
+
+	    case TYPE + '_SET_COMPANY':
+	      return _extends({}, state, { company: action.payload });
+	      break;
+
+	    case TYPE + '_FULFILLED':
+	      return _extends({}, state, {
+	        fetching: false,
+	        items: action.payload
+	      });
+	      break;
+
+	    case TYPE + '_PAGINATE':
+	      return _extends({}, state, {
+	        query: action.payload
+	      });
+	      break;
+
+	    case TYPE + '_SEARCH':
+	      return _extends({}, state, {
+	        query: action.payload
+	      });
+	      break;
+
+	    case TYPE + '_ADD':
+	      return _extends({}, state, {
+	        items: [action.payload].concat(_toConsumableArray(state.items))
+	      });
+	      break;
+
+	    case TYPE + '_UPDATE':
+	      var items = state.items.map(function (item) {
+	        return item.id == action.payload.id ? _extends({}, item, action.payload) : item;
+	      });
+
+	      return _extends({}, state, { items: items });
+	      break;
+
+	    case TYPE + '_REMOVE':
+	      return _extends({}, state, {
+	        items: state.items.filter(function (item) {
+	          return item.id != action.payload;
+	        })
+	      });
+	      break;
+
+	    case TYPE + '_ADD_TO_LIST':
+	      return _extends({}, state, {
+	        ids: [action.payload].concat(state.ids)
+	      });
+	      break;
+
+	    case TYPE + '_REMOVE_TO_LIST':
+	      return _extends({}, state, {
+	        ids: state.ids.filter(function (id) {
+	          return id != action.payload;
+	        })
+	      });
+	      break;
+
+	    case TYPE + '_CLEAN_LIST':
+	      return _extends({}, state, {
+	        ids: []
+	      });
+	      break;
+
+	    case TYPE + '_SET_LIST':
+	      return _extends({}, state, {
+	        list: action.payload
+	      });
+	      break;
+
+	    default:
+	      return state;
+	      break;
+	  }
+	}
+
+/***/ },
 /* 233 */
 /***/ function(module, exports) {
 

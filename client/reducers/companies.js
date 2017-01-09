@@ -79,7 +79,7 @@ export default function reducer(state = initiState, action) {
     case `${TYPE}_REMOVE_TO_LIST`:
       return {
         ...state,
-        ids: state.ids.filter(id => id != action.payload);
+        ids: state.ids.filter(id => id != action.payload)
       };
     break;
 
