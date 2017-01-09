@@ -48,7 +48,7 @@ export function search(query, name) {
   
   return function(dispatch) { 
     dispatch({type: `${TYPE}_SEARCH`, payload: query});
-    dispatch(fetchCompanies(query));
+    dispatch(fetch(query));
   }
 }
 
