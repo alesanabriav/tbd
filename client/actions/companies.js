@@ -82,6 +82,10 @@ export function addToList(id) {
   return {type: `${TYPE}_ADD_TO_LIST`, payload: id}
 }
 
+export function removeToList(id) {
+  return {type: `${TYPE}_REMOVE_TO_LIST`, payload: id}
+}
+
 export function cleanIds() {
   return {type: `${TYPE}_CLEAN_LIST`, payload: []}
 }

@@ -5,7 +5,8 @@ import page from 'page.js';
 export default React.createClass({
   getInitialState() {
     return {
-      showRemove: false
+      showRemove: false,
+      added: false
     }
   },
 
@@ -28,17 +29,21 @@ export default React.createClass({
   },
 
   add(e) {
-    this.props.onAddToList(this.props.company.id);
+    if(!this.state.added) {
+      this.props.onAddToList(this.props.company.id);
+    } else {
+      this.props.onRemoveToList(this.props.company.id);
+    }
   },
 
   see(e) {
-
    let id = this.props.company.id;
     page(`/companies/${id}`);
   },
 
   render() {
     const {id, name, email, phone} = this.props.company;
+
     return (
       <tr>
         <td><input type="checkbox" onChange={this.add} checked={this.props.ids.indexOf(id) != -1 ? true : false } /></td>

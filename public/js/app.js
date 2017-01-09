@@ -26287,7 +26287,7 @@
 
 	var _redux = __webpack_require__(179);
 
-	var _companies = __webpack_require__(232);
+	var _companies = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./companies\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 	var _companies2 = _interopRequireDefault(_companies);
 
@@ -26303,116 +26303,7 @@
 	});
 
 /***/ },
-/* 232 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-	var _initiState;
-
-	exports.default = reducer;
-
-	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-	var TYPE = 'COMPANIES';
-
-	var initiState = (_initiState = {
-	  items: [],
-	  company: {},
-	  list: null,
-	  ids: []
-	}, _defineProperty(_initiState, 'company', {}), _defineProperty(_initiState, 'query', {
-	  offset: 0,
-	  nameLike: null
-	}), _defineProperty(_initiState, 'fetching', false), _defineProperty(_initiState, 'fetched', false), _initiState);
-
-	function reducer() {
-	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initiState;
-	  var action = arguments[1];
-
-	  switch (action.type) {
-	    case TYPE + '_FETCH':
-	      return _extends({}, state, { fetching: true });
-	      break;
-
-	    case TYPE + '_SET_COMPANY':
-	      return _extends({}, state, { company: action.payload });
-	      break;
-
-	    case TYPE + '_FULFILLED':
-	      return _extends({}, state, {
-	        fetching: false,
-	        items: action.payload
-	      });
-	      break;
-
-	    case TYPE + '_PAGINATE':
-	      return _extends({}, state, {
-	        query: action.payload
-	      });
-	      break;
-
-	    case TYPE + '_SEARCH':
-	      return _extends({}, state, {
-	        query: action.payload
-	      });
-	      break;
-
-	    case TYPE + '_ADD':
-	      return _extends({}, state, {
-	        items: [action.payload].concat(_toConsumableArray(state.items))
-	      });
-	      break;
-
-	    case TYPE + '_UPDATE':
-	      var items = state.items.map(function (item) {
-	        return item.id == action.payload.id ? _extends({}, item, action.payload) : item;
-	      });
-
-	      return _extends({}, state, { items: items });
-	      break;
-
-	    case TYPE + '_REMOVE':
-	      return _extends({}, state, {
-	        items: state.items.filter(function (item) {
-	          return item.id != action.payload;
-	        })
-	      });
-	      break;
-
-	    case TYPE + '_ADD_TO_LIST':
-	      return _extends({}, state, {
-	        ids: [action.payload].concat(state.ids)
-	      });
-	      break;
-
-	    case TYPE + '_CLEAN_LIST':
-	      return _extends({}, state, {
-	        ids: []
-	      });
-	      break;
-
-	    case TYPE + '_SET_LIST':
-	      return _extends({}, state, {
-	        list: action.payload
-	      });
-	      break;
-
-	    default:
-	      return state;
-	      break;
-	  }
-	}
-
-/***/ },
+/* 232 */,
 /* 233 */
 /***/ function(module, exports) {
 
@@ -26697,6 +26588,9 @@
 	  addToList: function addToList(id) {
 	    this.props.dispatch(action.addToList(id));
 	  },
+	  removeToList: function removeToList(id) {
+	    this.props.dispatch(action.removeToList(id));
+	  },
 	  handleListId: function handleListId(id) {
 	    this.props.dispatch(action.setList(id));
 	  },
@@ -26737,7 +26631,8 @@
 	        company: company,
 	        edit: _this4.edit,
 	        remove: _this4.remove,
-	        onAddToList: _this4.addToList
+	        onAddToList: _this4.addToList,
+	        onRemoveToList: _this4.removeToList
 	      });
 	    });
 
@@ -26808,7 +26703,6 @@
 	                _react2.default.createElement(
 	                  'th',
 	                  null,
-	                  '# ',
 	                  _react2.default.createElement('input', { type: 'checkbox', onChange: this.addAll })
 	                ),
 	                _react2.default.createElement(
@@ -26859,6 +26753,7 @@
 	exports.update = update;
 	exports.remove = remove;
 	exports.addToList = addToList;
+	exports.removeToList = removeToList;
 	exports.cleanIds = cleanIds;
 	exports.setList = setList;
 
@@ -26951,6 +26846,10 @@
 
 	function addToList(id) {
 	  return { type: TYPE + '_ADD_TO_LIST', payload: id };
+	}
+
+	function removeToList(id) {
+	  return { type: TYPE + '_REMOVE_TO_LIST', payload: id };
 	}
 
 	function cleanIds() {
@@ -27085,7 +26984,8 @@
 	  displayName: 'item',
 	  getInitialState: function getInitialState() {
 	    return {
-	      showRemove: false
+	      showRemove: false,
+	      added: false
 	    };
 	  },
 	  addToList: function addToList() {
@@ -27103,10 +27003,13 @@
 	    this.setState({ showRemove: !this.state.showRemove });
 	  },
 	  add: function add(e) {
-	    this.props.onAddToList(this.props.company.id);
+	    if (!this.state.added) {
+	      this.props.onAddToList(this.props.company.id);
+	    } else {
+	      this.props.onRemoveToList(this.props.company.id);
+	    }
 	  },
 	  see: function see(e) {
-
 	    var id = this.props.company.id;
 	    (0, _page2.default)('/companies/' + id);
 	  },
@@ -27116,6 +27019,7 @@
 	    var name = _props$company.name;
 	    var email = _props$company.email;
 	    var phone = _props$company.phone;
+
 
 	    return _react2.default.createElement(
 	      'tr',

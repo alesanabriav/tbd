@@ -62,6 +62,10 @@ const companies =  React.createClass({
     this.props.dispatch(action.addToList(id));
   },
 
+  removeToList(id) {
+    this.props.dispatch(action.removeToList(id));
+  },
+
   handleListId(id) {
     this.props.dispatch(action.setList(id));
   },
@@ -90,6 +94,7 @@ const companies =  React.createClass({
         edit={this.edit} 
         remove={this.remove} 
         onAddToList={this.addToList}
+        onRemoveToList={this.removeToList}
         />
     );
 
@@ -131,7 +136,7 @@ const companies =  React.createClass({
               <table>
                 <thead>
                   <tr>
-                    <th># <input type="checkbox" onChange={this.addAll}  /></th>
+                    <th><input type="checkbox" onChange={this.addAll}  /></th>
                     <th>Razón Social</th>
                     <th>Opciones</th>
                   </tr>
