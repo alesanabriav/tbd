@@ -46,8 +46,9 @@ export function search(query, name) {
   if(name.length <= 0) name = null;
   query = {...query, nameLike: name};
   
-  return function(dispatch) { 
+  return dispatch => { 
     dispatch({type: `${TYPE}_SEARCH`, payload: query});
+    console.log('nea');
     dispatch(fetch(query));
   }
 }
