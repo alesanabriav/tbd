@@ -41,7 +41,7 @@ export default React.createClass({
     const {id, name, email, phone} = this.props.company;
     return (
       <tr>
-        <td><input type="checkbox" onChange={this.add} /></td>
+        <td><input type="checkbox" onChange={this.add} checked={this.props.ids.indexOf(id) != -1 ? true : false } /></td>
         <td>{name}</td>
         <td>
           <button onClick={this.see}>Ver</button>

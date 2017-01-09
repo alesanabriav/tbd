@@ -26728,9 +26728,11 @@
 	    var _props$companies2 = this.props.companies;
 	    var nameLink = _props$companies2.nameLink;
 	    var items = _props$companies2.items;
+	    var ids = _props$companies2.ids;
 
 	    var companiesNodes = items.map(function (company, ind) {
 	      return _react2.default.createElement(_item2.default, {
+	        ids: ids,
 	        key: ind,
 	        company: company,
 	        edit: _this4.edit,
@@ -27121,7 +27123,7 @@
 	      _react2.default.createElement(
 	        'td',
 	        null,
-	        _react2.default.createElement('input', { type: 'checkbox', onChange: this.add })
+	        _react2.default.createElement('input', { type: 'checkbox', onChange: this.add, checked: this.props.ids.indexOf(id) != -1 ? true : false })
 	      ),
 	      _react2.default.createElement(
 	        'td',

@@ -81,11 +81,12 @@ const companies =  React.createClass({
   },
   
   render() {
-    const {nameLink, items} = this.props.companies;
+    const {nameLink, items, ids} = this.props.companies;
     const companiesNodes = items.map((company, ind) =>
-      <Item 
+      <Item
+        ids={ids}
         key={ind} 
-        company={company} 
+        company={company}
         edit={this.edit} 
         remove={this.remove} 
         onAddToList={this.addToList}
