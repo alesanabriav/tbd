@@ -45,7 +45,7 @@ export function paginate(query, type) {
 export function search(query, name) {
   if(name.length <= 0) name = null;
   query = {...query, nameLike: name};
-  
+  console.log('search');
   return dispatch => { 
     dispatch({type: `${TYPE}_SEARCH`, payload: query});
     dispatch(fetch(query));

@@ -26905,7 +26905,7 @@
 	function search(query, name) {
 	  if (name.length <= 0) name = null;
 	  query = _extends({}, query, { nameLike: name });
-
+	  console.log('search');
 	  return function (dispatch) {
 	    dispatch({ type: TYPE + '_SEARCH', payload: query });
 	    dispatch(fetch(query));
